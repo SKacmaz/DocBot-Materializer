@@ -11,6 +11,10 @@ public class GridPlane {
 	private int[][] grid;
 	
 	public GridPlane(){super();}
+	public GridPlane(Set<String> users, Set<String> types){
+		super();
+		this.initialize(users, types);
+	}
 	
 	public void addUser(String user){
 		this.users.put(user, new Integer(this.users.size()));
@@ -86,6 +90,24 @@ public class GridPlane {
 		
 		this.grid[i][j]--;
 		//TODO tell the Bot what to do
+	}
+	
+	/**
+	 * Use this method to get the corresponding grid index for a given user.
+	 * @param user
+	 * @return int - corresponding index for the given user
+	 */
+	public int getUserIndex(String user){
+		return this.users.get(user).intValue();
+	}
+	
+	/**
+	 * Use this method to get the corresponding grid index for a given type.
+	 * @param type
+	 * @return int - corresponding index for the given type.
+	 */
+	public int getTypeIndex(String type){
+		return this.types.get(type).intValue();
 	}
 
 	public Map<String, Integer> getUsers() {
