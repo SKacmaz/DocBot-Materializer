@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.log4j.Logger;
@@ -16,8 +17,8 @@ import org.apache.log4j.Logger;
  * @author Kim
  *
  */
-public class Test {
-	static final Logger LOGGER = Logger.getLogger(Test.class.getName());
+public class Stairway {
+	static final Logger LOGGER = Logger.getLogger(Stairway.class.getName());
 	
 	private static final String LOCAL_HOST = "172.21.38.200";
 	
@@ -27,7 +28,7 @@ public class Test {
 	
 	private URIBuilder builder;
 	
-	public Test()
+	public Stairway()
 	{
 		builder = new URIBuilder();
 		builder.setScheme("http");
@@ -66,10 +67,10 @@ public class Test {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		Test test = new Test();
+		Stairway stairs = new Stairway();
 		
 		try {
-			String result = test.getJsonFrom(test.builder.build());
+			String result = stairs.getJsonFrom(stairs.builder.build());
 			LOGGER.info("RESULT: " + result);
 		} catch (URISyntaxException e) {
 			LOGGER.error("could not build uri", e);
