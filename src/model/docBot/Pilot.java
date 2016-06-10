@@ -1,9 +1,10 @@
 package model.docBot;
 
+import adam.IAdam;
 import model.GridPlane;
 
 public class Pilot {
-	private DocBot robot;
+	private IAdam robot;
 	private GridPlane grid;
 	private DocBotEnvironment environment;
 	
@@ -11,7 +12,7 @@ public class Pilot {
 		super();
 		this.grid = new GridPlane();
 	}
-	public Pilot(DocBot robot, DocBotEnvironment environment){
+	public Pilot(IAdam robot, DocBotEnvironment environment){
 		this.robot = robot;
 		this.environment = environment;
 	}

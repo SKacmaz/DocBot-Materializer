@@ -1,6 +1,6 @@
-package model.docBot;
+package adam;
 
-public interface DocBot {
+public interface IAdam {
 	/**
 	 * Use this method to move a given length in cm forward.
 	 * @param cm
