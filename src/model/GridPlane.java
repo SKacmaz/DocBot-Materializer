@@ -76,7 +76,6 @@ public class GridPlane {
 		int j = this.types.get(type).intValue();
 		
 		this.grid[i][j]++;
-		//TODO tell the Bot what to do
 	}
 	
 	/**
@@ -89,7 +88,6 @@ public class GridPlane {
 		int j = this.types.get(type).intValue();
 		
 		this.grid[i][j]--;
-		//TODO tell the Bot what to do
 	}
 	
 	/**
