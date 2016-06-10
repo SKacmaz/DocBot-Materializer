@@ -7,7 +7,6 @@ import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.log4j.Logger;

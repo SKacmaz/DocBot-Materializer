@@ -8,11 +8,25 @@ public class GridPlane {
 	private Map<String, Integer> users = new HashMap<String, Integer>();
 	private Map<String, Integer> types = new HashMap<String, Integer>();
 	
+	/**
+	 *       | type1 | type2 | ...
+	 * ------+-------+-------+-----
+	 * depot | 0...n | 0...m | ...
+	 * ------+-------+-------+-----
+	 * user1 | 0...k | 0...l | ...
+	 * ------+-------+-------+-----
+	 *  ...  |  ...  |  ...  | ...
+	 * 
+	 */
 	private int[][] grid;
 	
-	public GridPlane(){super();}
+	public GridPlane(){
+		super();
+		this.addUser("depot");
+	}
 	public GridPlane(Set<String> users, Set<String> types){
 		super();
+		this.addUser("depot");
 		this.initialize(users, types);
 	}
 	
@@ -50,7 +64,7 @@ public class GridPlane {
 	 * @see addUser(), addUsers(), addType(), addTypes()
 	 */
 	public void initialize(){
-		this.grid = new int[this.users.size()][this.types.size()];
+		this.grid = new int[this.types.size()][this.users.size()];
 	}
 	
 	/**
@@ -63,7 +77,7 @@ public class GridPlane {
 		this.addUsers(users);
 		this.addTypes(types);
 		
-		this.grid = new int[this.users.size()][this.types.size()];
+		this.grid = new int[this.types.size()][this.users.size()];
 	}
 	
 	/**
@@ -75,7 +89,7 @@ public class GridPlane {
 		int i = this.users.get(user).intValue();
 		int j = this.types.get(type).intValue();
 		
-		this.grid[i][j]++;
+		this.grid[j][i]++;
 	}
 	
 	/**
@@ -87,7 +101,7 @@ public class GridPlane {
 		int i = this.users.get(user).intValue();
 		int j = this.types.get(type).intValue();
 		
-		this.grid[i][j]--;
+		this.grid[j][i]--;
 	}
 	
 	/**

@@ -1,6 +1,8 @@
 package adam;
 
 public interface IAdam {
+	//TODO add precision by using double instead of int
+	
 	/**
 	 * Use this method to move a given length in cm forward.
 	 * @param cm
