@@ -65,16 +65,4 @@ public class Stairway {
 		}
 		return result.toString();
 	}
-	
-	public static void main(String[] args) throws IOException {
-		Stairway stairs = new Stairway();
-		
-		try {
-			String result = stairs.getJsonFrom(stairs.builder.build());
-			LOGGER.info("RESULT: " + result);
-		} catch (URISyntaxException e) {
-			LOGGER.error("could not build uri", e);
-		}
-	}
-	
 }

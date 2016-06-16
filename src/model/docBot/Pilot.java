@@ -2,29 +2,30 @@ package model.docBot;
 
 import adam.IAdam;
 import model.GridPlane;
-
+/**
+ * This class controls the robot and the environment the robot is in,
+ * by increasing or decreasing the field values corresponding to the specified user and type.
+ * @author Jochen Joswig
+ *
+ */
 public class Pilot {
-	private IAdam robot;
-	private GridPlane grid;
-	private DocBotEnvironment environment;
+	private final IAdam robot;
+	private final GridPlane grid;
+	private final DocBotEnvironment environment;
 	
-	public Pilot(){
-		super();
-		this.grid = new GridPlane();
-	}
-	public Pilot(IAdam robot, DocBotEnvironment environment){
+	public Pilot(GridPlane grid, IAdam robot, DocBotEnvironment environment){
+		this.grid = grid;
 		this.robot = robot;
 		this.environment = environment;
 	}
 	
 	public boolean increase(String type, String user){
 		this.moveRobotToDepot(type);
-		
-		
+				
 		return true;
 	}
 	
-	public boolean remove(String type, String user){
+	public boolean decreasing(String type, String user){
 		return true;
 	}
 	

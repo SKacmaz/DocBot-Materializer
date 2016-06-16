@@ -16,58 +16,44 @@ public class Adam implements IAdam{
 
 	static final Logger LOGGER = Logger.getLogger(Stairway.class.getName());
 	
+	private final String EVE_HOST = "http://192.168.137.189/";
+	
 	@Override
 	public boolean moveForward(int cm) {
-			StringBuilder result = new StringBuilder();
-			HttpURLConnection conn;
-			
-			URI uri = URI.create("http://192.168.137.189/forward");
-			
-			try {
-				conn = (HttpURLConnection) uri.toURL().openConnection();
-				LOGGER.info("connection to Haven estalished");
-				conn.setRequestMethod("GET");
-				BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-				String line;
-				while ((line = rd.readLine()) != null) {
-					result.append(line);
-				}
-				rd.close();
-			} catch (IOException e) {
-				LOGGER.error("Connection to Haven could not be established", e);
-			}
-		
-		return false;
+		URI uri = URI.create(EVE_HOST + "forward");
+		return sendCommandToEve(uri);
 	}
 
 	@Override
 	public boolean moveBackward(int cm) {
-		// TODO Auto-generated method stub
-		return false;
+		URI uri = URI.create(EVE_HOST + "backward");
+		return sendCommandToEve(uri);
 	}
 
 	@Override
 	public boolean turnRight(int angle) {
-		// TODO Auto-generated method stub
-		return false;
+		// TODO add angle!
+		URI uri = URI.create(EVE_HOST + "turnright");
+		return sendCommandToEve(uri);
 	}
 
 	@Override
 	public boolean turnLeft(int angle) {
-		// TODO Auto-generated method stub
-		return false;
+		// TODO add angle!
+		URI uri = URI.create(EVE_HOST + "turnleft");
+		return sendCommandToEve(uri);
 	}
 
 	@Override
 	public boolean grab() {
-		// TODO Auto-generated method stub
-		return false;
+		URI uri = URI.create(EVE_HOST + "grab");
+		return sendCommandToEve(uri);
 	}
 
 	@Override
 	public boolean drop() {
-		// TODO Auto-generated method stub
-		return false;
+		URI uri = URI.create(EVE_HOST + "drop");
+		return sendCommandToEve(uri);
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -76,4 +62,33 @@ public class Adam implements IAdam{
 		Boolean result = stairs.moveForward(20);
 		LOGGER.info("RESULT: " + result);
 	}
+	
+	/**
+	 * Creates and sends a GET call to the given URI
+	 * @param commandUri a {@link URI} that points to the URL with a command for Ev3.
+	 * @return true if the call was successful
+	 */
+	private boolean sendCommandToEve(URI commandUri)
+	{
+		StringBuilder result = new StringBuilder();
+		HttpURLConnection conn;
+		
+		try {
+			conn = (HttpURLConnection) commandUri.toURL().openConnection();
+			LOGGER.info("Sending request to Ev3 successful! Request URL: " + commandUri);
+			conn.setRequestMethod("GET");
+			BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String line;
+			while ((line = rd.readLine()) != null) {
+				result.append(line);
+			}
+			rd.close();
+			
+			return true;
+		} catch (IOException e) {
+			LOGGER.error("Sending request to Ev3 FAILED! Request URL: " + commandUri, e);
+			return false;
+		}
+	}
+	
 }

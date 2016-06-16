@@ -1,71 +1,66 @@
 package model.docBot;
 
 public class DocBotEnvironment {
-	private int DocBotHeigth;
-	private int DocBotWidth;
-	private int SquareHeight;
-	private int SquareWidth;
-	private int BotColPos = 0;
-	private int BotRowPos = 1;
+	private int docBotHeigth;
+	private int docBotWidth;
+	private int squareHeight;
+	private int squareWidth;
+	private int botColPos = 0;
+	private int botRowPos = 1;
 		
-	public DocBotEnvironment(){
-		super();
-	}
-	
 	public DocBotEnvironment(int docBotHeigth, int docBotWidth, int squareHeight, int squareWidth) {
-		super();
-		DocBotHeigth = docBotHeigth;
-		DocBotWidth = docBotWidth;
-		SquareHeight = squareHeight;
-		SquareWidth = squareWidth;
+		this.docBotHeigth = docBotHeigth;
+		this.docBotWidth = docBotWidth;
+		this.squareHeight = squareHeight;
+		this.squareWidth = squareWidth;
 	}
 
 	public int getDocBotHeigth() {
-		return DocBotHeigth;
+		return docBotHeigth;
 	}
 
 	public void setDocBotHeigth(int docBotHeigth) {
-		DocBotHeigth = docBotHeigth;
+		this.docBotHeigth = docBotHeigth;
 	}
 
 	public int getDocBotWidth() {
-		return DocBotWidth;
+		return docBotWidth;
 	}
 
 	public void setDocBotWidth(int docBotWidth) {
-		DocBotWidth = docBotWidth;
+		this.docBotWidth = docBotWidth;
 	}
 
 	public int getSquareHeight() {
-		return SquareHeight;
+		return squareHeight;
 	}
 
 	public void setSquareHeight(int squareHeight) {
-		SquareHeight = squareHeight;
+		this.squareHeight = squareHeight;
 	}
 
 	public int getSquareWidth() {
-		return SquareWidth;
+		return squareWidth;
 	}
 
 	public void setSquareWidth(int squareWidth) {
-		SquareWidth = squareWidth;
+		this.squareWidth = squareWidth;
 	}
 
 	public int getBotColPos() {
-		return BotColPos;
+		return botColPos;
 	}
 
 	public void setBotColPos(int botColPos) {
-		BotColPos = botColPos;
+		this.botColPos = botColPos;
 	}
 
 	public int getBotRowPos() {
-		return BotRowPos;
+		return botRowPos;
 	}
 
 	public void setBotRowPos(int botRowPos) {
-		BotRowPos = botRowPos;
+		this.botRowPos = botRowPos;
 	}
 
 }
