@@ -16,7 +16,7 @@ public class Adam implements IAdam{
 
 	static final Logger LOGGER = Logger.getLogger(Stairway.class.getName());
 	
-	private final String EVE_HOST = "http://192.168.137.189/";
+	private final String EVE_HOST = "http://192.168.173.227/";
 	
 	@Override
 	public boolean moveForward(int cm) {
@@ -56,13 +56,6 @@ public class Adam implements IAdam{
 		return sendCommandToEve(uri);
 	}
 
-	public static void main(String[] args) throws IOException {
-		Adam stairs = new Adam();
-		
-		Boolean result = stairs.moveForward(20);
-		LOGGER.info("RESULT: " + result);
-	}
-	
 	/**
 	 * Creates and sends a GET call to the given URI
 	 * @param commandUri a {@link URI} that points to the URL with a command for Ev3.
@@ -90,5 +83,28 @@ public class Adam implements IAdam{
 			return false;
 		}
 	}
+
 	
+	// JUST FOR TESTING
+	public static void main(String[] args) throws IOException {
+		Adam robot = new Adam();
+		
+		Boolean result = robot.moveForward(20);
+		LOGGER.info("RESULT: " + result);
+		
+		 result = robot.moveBackward(20);
+		LOGGER.info("RESULT: " + result);
+		
+		result = robot.turnLeft(20);
+		LOGGER.info("RESULT: " + result);
+		
+		result = robot.turnRight(20);
+		LOGGER.info("RESULT: " + result);
+		
+		result = robot.grab();
+		LOGGER.info("RESULT: " + result);
+		
+		result = robot.drop();
+		LOGGER.info("RESULT: " + result);
+	}
 }
