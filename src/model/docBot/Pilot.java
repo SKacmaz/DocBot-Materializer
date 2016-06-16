@@ -21,7 +21,7 @@ public class Pilot {
 	
 	public boolean increase(String type, String user){
 		this.moveRobotToDepot(type);
-				
+		this.moveRobotToDestination(user, type);
 		return true;
 	}
 	
@@ -37,7 +37,7 @@ public class Pilot {
 	 */
 	private void moveRobotToDepot(String type){
 		//horizontal movement
-		int typeDelta = (this.grid.getTypeIndex(type) - this.environment.getBotColPos());
+		double typeDelta = (this.grid.getTypeIndex(type) - this.environment.getBotColPos());
 		typeDelta = typeDelta * this.environment.getSquareWidth() + typeDelta * Math.max(this.environment.getDocBotHeigth(), this.environment.getDocBotWidth());
 		if(typeDelta < 0){
 			this.robot.turnRight(90);
@@ -48,7 +48,7 @@ public class Pilot {
 		this.robot.moveForward(typeDelta + (this.environment.getSquareWidth() / 2));
 		
 		//vertical movement
-		int userDelta = (this.grid.getUserIndex("depot") - this.environment.getBotRowPos());
+		double userDelta = (this.grid.getUserIndex("depot") - this.environment.getBotRowPos());
 		userDelta = userDelta * this.environment.getSquareHeight() + userDelta * Math.max(this.environment.getDocBotHeigth(), this.environment.getDocBotWidth());
 		if(typeDelta < 0 && userDelta < 0){
 			this.robot.turnRight(90);
@@ -69,5 +69,17 @@ public class Pilot {
 		this.robot.turnRight(90);
 		
 		this.robot.grab();
+	}
+	
+	/**
+	 * Use this method to move the robot from the depot to the desired location, given by user and type.
+	 * @param user
+	 * @param type
+	 */
+	private void moveRobotToDestination(String user, String type){
+		//horizontal movement
+		double typeDelta = (this.grid.getTypeIndex(type) - this.environment.getBotColPos());
+		
+		//vertical movement
 	}
 }

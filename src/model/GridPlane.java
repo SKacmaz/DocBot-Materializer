@@ -1,6 +1,7 @@
 package model;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -23,7 +24,11 @@ public class GridPlane {
 	public GridPlane(){
 		super();
 		this.addUser("depot");
+		
+		//XXX to be delete / just for testing
+		this.fillWithdefaultValues();
 	}
+	
 	public GridPlane(Set<String> users, Set<String> types){
 		super();
 		this.addUser("depot");
@@ -146,4 +151,23 @@ public class GridPlane {
 		this.grid = grid;
 	}
 	
+	/**
+	 * Use this method to initialize the GridPlane with default data:
+	 * users: Jochen, Kim, Semih
+	 * types: A, B, C
+	 */
+	public void fillWithdefaultValues(){
+		Set<String> users = new HashSet<String>();
+		Set<String> types = new HashSet<String>();
+		
+		users.add("Jochen");
+		users.add("Kim");
+		users.add("Semih");
+		
+		types.add("A");
+		types.add("B");
+		types.add("C");
+		
+		this.initialize(users, types);
+	}
 }

@@ -1,65 +1,65 @@
 package model.docBot;
 
 public class DocBotEnvironment {
-	private int docBotHeigth;
-	private int docBotWidth;
-	private int squareHeight;
-	private int squareWidth;
-	private int botColPos = 0;
-	private int botRowPos = 1;
+	private double docBotHeigth = 1;
+	private double docBotWidth = 1;
+	private double squareHeight = 2;
+	private double squareWidth = 2;
+	private double botColPos = 0;
+	private double botRowPos = 0;
 		
-	public DocBotEnvironment(int docBotHeigth, int docBotWidth, int squareHeight, int squareWidth) {
+	public DocBotEnvironment(double docBotHeigth, double docBotWidth, double squareHeight, double squareWidth) {
 		this.docBotHeigth = docBotHeigth;
 		this.docBotWidth = docBotWidth;
 		this.squareHeight = squareHeight;
 		this.squareWidth = squareWidth;
 	}
 
-	public int getDocBotHeigth() {
+	public double getDocBotHeigth() {
 		return docBotHeigth;
 	}
 
-	public void setDocBotHeigth(int docBotHeigth) {
+	public void setDocBotHeigth(double docBotHeigth) {
 		this.docBotHeigth = docBotHeigth;
 	}
 
-	public int getDocBotWidth() {
+	public double getDocBotWidth() {
 		return docBotWidth;
 	}
 
-	public void setDocBotWidth(int docBotWidth) {
+	public void setDocBotWidth(double docBotWidth) {
 		this.docBotWidth = docBotWidth;
 	}
 
-	public int getSquareHeight() {
+	public double getSquareHeight() {
 		return squareHeight;
 	}
 
-	public void setSquareHeight(int squareHeight) {
+	public void setSquareHeight(double squareHeight) {
 		this.squareHeight = squareHeight;
 	}
 
-	public int getSquareWidth() {
+	public double getSquareWidth() {
 		return squareWidth;
 	}
 
-	public void setSquareWidth(int squareWidth) {
+	public void setSquareWidth(double squareWidth) {
 		this.squareWidth = squareWidth;
 	}
 
-	public int getBotColPos() {
+	public double getBotColPos() {
 		return botColPos;
 	}
 
-	public void setBotColPos(int botColPos) {
+	public void setBotColPos(double botColPos) {
 		this.botColPos = botColPos;
 	}
 
-	public int getBotRowPos() {
+	public double getBotRowPos() {
 		return botRowPos;
 	}
 
-	public void setBotRowPos(int botRowPos) {
+	public void setBotRowPos(double botRowPos) {
 		this.botRowPos = botRowPos;
 	}
 
