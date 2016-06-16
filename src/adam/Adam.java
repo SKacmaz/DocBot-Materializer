@@ -19,26 +19,26 @@ public class Adam implements IAdam{
 	private final String EVE_HOST = "http://192.168.173.227/";
 	
 	@Override
-	public boolean moveForward(int cm) {
+	public boolean moveForward(double cm) {
 		URI uri = URI.create(EVE_HOST + "forward");
 		return sendCommandToEve(uri);
 	}
 
 	@Override
-	public boolean moveBackward(int cm) {
+	public boolean moveBackward(double cm) {
 		URI uri = URI.create(EVE_HOST + "backward");
 		return sendCommandToEve(uri);
 	}
 
 	@Override
-	public boolean turnRight(int angle) {
+	public boolean turnRight(double angle) {
 		// TODO add angle!
 		URI uri = URI.create(EVE_HOST + "turnright");
 		return sendCommandToEve(uri);
 	}
 
 	@Override
-	public boolean turnLeft(int angle) {
+	public boolean turnLeft(double angle) {
 		// TODO add angle!
 		URI uri = URI.create(EVE_HOST + "turnleft");
 		return sendCommandToEve(uri);
