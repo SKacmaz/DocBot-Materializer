@@ -9,18 +9,43 @@ package model.docBot;
  * @author Jochen Joswig
  */
 public class DocBotEnvironment {
-	private double docBotHeigth = 1;
-	private double docBotWidth = 1;
-	private double squareHeight = 2;
-	private double squareWidth = 2;
-	private int botColPos = 0;
-	private int botRowPos = 0;
+	/**
+	 * The height of the robot in cm.
+	 */
+	private final double docBotHeigth;
+	/**
+	 * The width of the robot in cm.
+	 */
+	private final double docBotWidth;
+	/**
+	 * the height of one square of the grid in cm.
+	 */
+	private final double squareHeight;
+	/**
+	 * the width of one square of the grid in cm.
+	 */
+	private final double squareWidth;
+	/**
+	 * The current column position of the robot.
+	 */
+	private int botColPos;
+	/**
+	 * The current row position of the robot.
+	 */
+	private int botRowPos;
 	
 	/**
 	 * Use this constructor to create a DocBotEnvironment with default values.
+	 * @deprecated
 	 */
 	public DocBotEnvironment(){
 		super();
+		this.botColPos = 0;
+		this.botRowPos = 0;
+		this.squareHeight = 4;
+		this.squareWidth = 4;
+		this.docBotHeigth = 5;
+		this.docBotWidth = 4;
 	}
 	
 	/**
@@ -30,44 +55,35 @@ public class DocBotEnvironment {
 	 * @param squareHeight
 	 * @param squareWidth
 	 */
-	public DocBotEnvironment(double docBotHeigth, double docBotWidth, double squareHeight, double squareWidth) {
-		super();
+	public DocBotEnvironment(double docBotHeigth, double docBotWidth, double squareHeight, double squareWidth, int botColPos, int botRowPos) {
 		this.docBotHeigth = docBotHeigth;
 		this.docBotWidth = docBotWidth;
 		this.squareHeight = squareHeight;
 		this.squareWidth = squareWidth;
+		this.botColPos = botColPos;
+		this.botRowPos = botRowPos;
 	}
+	
+	public double getMaxDocBotMeasurements(){
+		return Math.max(this.docBotHeigth, this.docBotWidth);
+	}
+	
 
 	public double getDocBotHeigth() {
 		return docBotHeigth;
-	}
-
-	public void setDocBotHeigth(double docBotHeigth) {
-		this.docBotHeigth = docBotHeigth;
 	}
 
 	public double getDocBotWidth() {
 		return docBotWidth;
 	}
 
-	public void setDocBotWidth(double docBotWidth) {
-		this.docBotWidth = docBotWidth;
-	}
 
 	public double getSquareHeight() {
 		return squareHeight;
 	}
 
-	public void setSquareHeight(double squareHeight) {
-		this.squareHeight = squareHeight;
-	}
-
 	public double getSquareWidth() {
 		return squareWidth;
-	}
-
-	public void setSquareWidth(double squareWidth) {
-		this.squareWidth = squareWidth;
 	}
 
 	public int getBotColPos() {

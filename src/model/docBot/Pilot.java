@@ -19,13 +19,33 @@ public class Pilot {
 		this.environment = environment;
 	}
 	
-	public boolean increase(String type, String user){
+	/**
+	 * Use this method to increase the amount of containers associated with a given user and type by 1.
+	 * @param type
+	 * @param user
+	 * @return
+	 */
+	public boolean increment(String type, String user){
 		this.moveRobotToDepot(type);
+		this.robot.grab();
 		this.moveRobotToDestination(user, type);
+		this.robot.drop();
+		this.grid.increment(user, type);
 		return true;
 	}
 	
-	public boolean decreasing(String type, String user){
+	/**
+	 * Use this method to decrease the amount of containers associated with a given user and type by 1. 
+	 * @param type
+	 * @param user
+	 * @return
+	 */
+	public boolean decrement(String type, String user){
+		this.moveRobotToDestination(user, type);
+		this.robot.grab();
+		this.moveRobotToDepot(type);
+		this.robot.drop();
+		this.grid.decrement(user, type);
 		return true;
 	}
 	
@@ -38,18 +58,20 @@ public class Pilot {
 	private void moveRobotToDepot(String type){
 		//horizontal movement
 		double typeDelta = (this.grid.getTypeIndex(type) - this.environment.getBotColPos());
-		typeDelta = typeDelta * this.environment.getSquareWidth() + typeDelta * Math.max(this.environment.getDocBotHeigth(), this.environment.getDocBotWidth());
+		
 		if(typeDelta < 0){
 			this.robot.turnRight(90);
 		} else {
 			this.robot.turnLeft(90);
 		}
 		
-		this.robot.moveForward(typeDelta + (this.environment.getSquareWidth() / 2));
+		typeDelta = typeDelta * this.environment.getSquareWidth() + typeDelta * Math.max(this.environment.getDocBotHeigth(), this.environment.getDocBotWidth());
+				
+		this.robot.moveForward(Math.abs(typeDelta) + (this.environment.getSquareWidth() / 2) + (this.environment.getDocBotHeigth()));
 		
 		//vertical movement
 		double userDelta = (this.grid.getUserIndex("depot") - this.environment.getBotRowPos());
-		userDelta = userDelta * this.environment.getSquareHeight() + userDelta * Math.max(this.environment.getDocBotHeigth(), this.environment.getDocBotWidth());
+		
 		if(typeDelta < 0 && userDelta < 0){
 			this.robot.turnRight(90);
 		}else if(typeDelta < 0 && userDelta > 0){
@@ -60,7 +82,10 @@ public class Pilot {
 			this.robot.turnRight(90);
 		}
 		
-		this.robot.moveForward(userDelta);
+		userDelta = userDelta * this.environment.getSquareHeight() + userDelta * Math.max(this.environment.getDocBotHeigth(), this.environment.getDocBotWidth());
+
+		
+		this.robot.moveForward(Math.abs(userDelta));
 		
 		this.robot.turnLeft(90);
 		
@@ -68,7 +93,8 @@ public class Pilot {
 		
 		this.robot.turnRight(90);
 		
-		this.robot.grab();
+		this.environment.setBotRowPos(this.grid.getUserIndex("depot"));
+		this.environment.setBotColPos(this.grid.getTypeIndex(type));
 	}
 	
 	/**
@@ -79,7 +105,12 @@ public class Pilot {
 	private void moveRobotToDestination(String user, String type){
 		//horizontal movement
 		double typeDelta = (this.grid.getTypeIndex(type) - this.environment.getBotColPos());
-		
+		typeDelta = typeDelta * this.environment.getSquareWidth() + typeDelta * Math.max(this.environment.getDocBotHeigth(), this.environment.getDocBotWidth());
+		if(typeDelta < 0){
+			this.robot.turnRight(90);
+		} else {
+			this.robot.turnLeft(90);
+		}
 		//vertical movement
 	}
 }

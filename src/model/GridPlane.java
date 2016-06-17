@@ -29,6 +29,7 @@ public class GridPlane {
 	/**
 	 * Use this constructor to create a GridPlane with default values.
 	 * @see fillWithdefaultValues()
+	 * @deprecated
 	 */
 	public GridPlane(){
 		this.addUser("depot");
@@ -98,11 +99,11 @@ public class GridPlane {
 	}
 	
 	/**
-	 * increases the resource-counter for a given user and type of resource
+	 * increases the resource-counter for a given user and type of resource by 1.
 	 * @param user
 	 * @param type
 	 */
-	public void increase(String user, String type){
+	public void increment(String user, String type){
 		int i = this.users.get(user).intValue();
 		int j = this.types.get(type).intValue();
 		
@@ -110,11 +111,11 @@ public class GridPlane {
 	}
 	
 	/**
-	 * decreases the resources-counter for a given user and type of resource
+	 * decreases the resources-counter for a given user and type of resource by 1.
 	 * @param user
 	 * @param type
 	 */
-	public void decrease(String user, String type){
+	public void decrement(String user, String type){
 		int i = this.users.get(user).intValue();
 		int j = this.types.get(type).intValue();
 		
