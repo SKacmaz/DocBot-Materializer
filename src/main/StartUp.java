@@ -34,7 +34,7 @@ public class StartUp {
 		IAdam adam = new Adam();
 		
 		//represents the dimensions of the robot and its environment
-		DocBotEnvironment environment = new DocBotEnvironment(1,1,1,1);
+		DocBotEnvironment environment = new DocBotEnvironment();
 		
 		//Represents the grid in which the resources will be materialized
 		GridPlane plane = new GridPlane();
