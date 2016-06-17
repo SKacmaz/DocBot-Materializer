@@ -5,8 +5,8 @@ public class DocBotEnvironment {
 	private double docBotWidth = 1;
 	private double squareHeight = 2;
 	private double squareWidth = 2;
-	private double botColPos = 0;
-	private double botRowPos = 0;
+	private int botColPos = 0;
+	private int botRowPos = 0;
 		
 	public DocBotEnvironment(double docBotHeigth, double docBotWidth, double squareHeight, double squareWidth) {
 		this.docBotHeigth = docBotHeigth;
@@ -47,19 +47,19 @@ public class DocBotEnvironment {
 		this.squareWidth = squareWidth;
 	}
 
-	public double getBotColPos() {
+	public int getBotColPos() {
 		return botColPos;
 	}
 
-	public void setBotColPos(double botColPos) {
+	public void setBotColPos(int botColPos) {
 		this.botColPos = botColPos;
 	}
 
-	public double getBotRowPos() {
+	public int getBotRowPos() {
 		return botRowPos;
 	}
 
-	public void setBotRowPos(double botRowPos) {
+	public void setBotRowPos(int botRowPos) {
 		this.botRowPos = botRowPos;
 	}
 
