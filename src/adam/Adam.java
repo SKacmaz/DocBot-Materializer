@@ -23,13 +23,16 @@ public class Adam implements IAdam{
 	
 	@Override
 	public boolean moveForward(double cm) {
-		URI uri = URI.create(EVE_HOST + "forward-" + cm);
+		
+		Double temp = cm;
+		URI uri = URI.create(EVE_HOST + "forward-" + temp.intValue());
 		return sendCommandToEve(uri);
 	}
 
 	@Override
 	public boolean moveBackward(double cm) {
-		URI uri = URI.create(EVE_HOST + "backward-" + cm);
+		Double temp = cm;
+		URI uri = URI.create(EVE_HOST + "backward-" + temp.intValue());
 		return sendCommandToEve(uri);
 	}
 
@@ -92,10 +95,10 @@ public class Adam implements IAdam{
 	public static void main(String[] args) throws IOException {
 		Adam robot = new Adam();
 		
-		Boolean result = robot.moveForward(20);
+		Boolean result = robot.moveForward(20.0);
 		LOGGER.info("RESULT: " + result);
 		
-		 result = robot.moveBackward(20);
+		 result = robot.moveBackward(20.0);
 		LOGGER.info("RESULT: " + result);
 		
 		result = robot.turnLeft(90);

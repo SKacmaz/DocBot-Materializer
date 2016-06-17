@@ -1,11 +1,7 @@
 package test;
 
-import java.io.IOException;
 import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import org.apache.log4j.Logger;
 import org.junit.Before;
@@ -66,7 +62,7 @@ public class SimulationTest {
 	public void setup()
 	{
 		adam = new Adam();
-		environment = new DocBotEnvironment();
+		environment = new DocBotEnvironment(25, 18, 25, 25, 0, 0);
 		
 		users.add(USER_A);
 		users.add(USER_B);
