@@ -65,9 +65,9 @@ public class Pilot {
 			this.robot.turnLeft(90);
 		}
 		
-		typeDelta = typeDelta * this.environment.getSquareWidth() + typeDelta * Math.max(this.environment.getDocBotHeigth(), this.environment.getDocBotWidth());
+		typeDelta = typeDelta * this.environment.getSquareWidth() + typeDelta * this.environment.getMaxDocBotMeasurements();
 				
-		this.robot.moveForward(Math.abs(typeDelta) + (this.environment.getSquareWidth() / 2) + (this.environment.getDocBotHeigth()));
+		this.robot.moveForward(Math.abs(typeDelta) + (this.environment.getSquareWidth() / 2) + (this.environment.getMaxDocBotMeasurements() / 2));
 		
 		//vertical movement
 		double userDelta = (this.grid.getUserIndex("depot") - this.environment.getBotRowPos());
@@ -76,14 +76,13 @@ public class Pilot {
 			this.robot.turnRight(90);
 		}else if(typeDelta < 0 && userDelta > 0){
 			this.robot.turnLeft(90);
-		}else if(typeDelta <= 0 && userDelta < 0){
+		}else if(typeDelta >= 0 && userDelta < 0){
 			this.robot.turnLeft(90);
-		}else if(typeDelta <= 0 && userDelta > 0){
+		}else if(typeDelta >= 0 && userDelta >= 0){
 			this.robot.turnRight(90);
 		}
 		
-		userDelta = userDelta * this.environment.getSquareHeight() + userDelta * Math.max(this.environment.getDocBotHeigth(), this.environment.getDocBotWidth());
-
+		userDelta = userDelta * this.environment.getSquareHeight() + userDelta * this.environment.getMaxDocBotMeasurements();
 		
 		this.robot.moveForward(Math.abs(userDelta));
 		
