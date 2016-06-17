@@ -4,9 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.ProtocolException;
 import java.net.URI;
-import java.net.URISyntaxException;
 
 import org.apache.log4j.Logger;
 
@@ -20,27 +18,27 @@ public class Adam implements IAdam{
 	
 	@Override
 	public boolean moveForward(double cm) {
-		URI uri = URI.create(EVE_HOST + "forward");
+		URI uri = URI.create(EVE_HOST + "forward-" + cm);
 		return sendCommandToEve(uri);
 	}
 
 	@Override
 	public boolean moveBackward(double cm) {
-		URI uri = URI.create(EVE_HOST + "backward");
+		URI uri = URI.create(EVE_HOST + "backward-" + cm);
 		return sendCommandToEve(uri);
 	}
 
 	@Override
 	public boolean turnRight(double angle) {
 		// TODO add angle!
-		URI uri = URI.create(EVE_HOST + "turnright");
+		URI uri = URI.create(EVE_HOST + "turnright-" + angle);
 		return sendCommandToEve(uri);
 	}
 
 	@Override
 	public boolean turnLeft(double angle) {
 		// TODO add angle!
-		URI uri = URI.create(EVE_HOST + "turnleft");
+		URI uri = URI.create(EVE_HOST + "turnleft-" + angle);
 		return sendCommandToEve(uri);
 	}
 
@@ -95,10 +93,10 @@ public class Adam implements IAdam{
 		 result = robot.moveBackward(20);
 		LOGGER.info("RESULT: " + result);
 		
-		result = robot.turnLeft(20);
+		result = robot.turnLeft(90);
 		LOGGER.info("RESULT: " + result);
 		
-		result = robot.turnRight(20);
+		result = robot.turnRight(90);
 		LOGGER.info("RESULT: " + result);
 		
 		result = robot.grab();
