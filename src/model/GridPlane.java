@@ -26,6 +26,10 @@ public class GridPlane {
 	 */
 	private int[][] grid;
 	
+	/**
+	 * Use this constructor to create a GridPlane with default values.
+	 * @see fillWithdefaultValues()
+	 */
 	public GridPlane(){
 		this.addUser("depot");
 		
@@ -33,6 +37,11 @@ public class GridPlane {
 		this.fillWithdefaultValues();
 	}
 	
+	/**
+	 * Use this constructor to create a GridPlane with the given Sets of users and types.
+	 * @param users
+	 * @param types
+	 */
 	public GridPlane(Set<String> users, Set<String> types){
 		this.addUser("depot");
 		this.initialize(users, types);

@@ -34,14 +34,14 @@ public class Adam implements IAdam{
 	}
 
 	@Override
-	public boolean turnRight(double angle) {
+	public boolean turnRight(int angle) {
 		// TODO add angle!
 		URI uri = URI.create(EVE_HOST + "turnright-" + angle);
 		return sendCommandToEve(uri);
 	}
 
 	@Override
-	public boolean turnLeft(double angle) {
+	public boolean turnLeft(int angle) {
 		// TODO add angle!
 		URI uri = URI.create(EVE_HOST + "turnleft-" + angle);
 		return sendCommandToEve(uri);

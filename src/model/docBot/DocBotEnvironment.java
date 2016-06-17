@@ -6,7 +6,7 @@ package model.docBot;
  * 		- The Position of the DocBot/robot
  * 		- The measurements of the grid cells and the DocBot/robot itself.
  *
- * @author Jochen
+ * @author Jochen Joswig
  */
 public class DocBotEnvironment {
 	private double docBotHeigth = 1;
