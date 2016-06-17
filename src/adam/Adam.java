@@ -19,7 +19,7 @@ public class Adam implements IAdam{
 
 	static final Logger LOGGER = Logger.getLogger(Stairway.class.getName());
 	
-	private final String EVE_HOST = "http://192.168.173.107/";
+	private final String EVE_HOST = "http://192.168.173.222/";
 	
 	@Override
 	public boolean moveForward(double cm) {
