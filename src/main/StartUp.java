@@ -2,6 +2,9 @@ package main;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.apache.log4j.Logger;
 
@@ -39,24 +42,44 @@ public class StartUp {
 		//component for handling physical world logic
 		Pilot pilot = new Pilot(plane, adam, environment);
 		
+		
+		
 		LOGGER.info("all components set up, beginning pulling loop");
 		
-		while(true)
+		
+		
+		// Start Scanner For User input
+		LOGGER.info("##########");
+		Scanner scanner = new Scanner(System.in);
+
+		// Create Polling Task
+		TimerTask pollFromHaven = new TimerTask()
 		{
-			//pull info and tell to pilot
+			@Override
+			public void run()
+			{
+				LOGGER.debug("###################");
+				LOGGER.info("polling from Haven...");
+				
+				String update = stairs.pullFromHaven();
+				
+				if(update != null && update != "")
+				{
+					LOGGER.info("UPDATE is: " + update);
+					pilot.increment("", "");
+					
+				}
+			}
+		};
+		
+		Timer timer = new Timer();
+		timer.schedule(pollFromHaven, 10000, 10000);
+		
+		LOGGER.debug("Please, enter 0 to exit.");
+		int i = scanner.nextInt();
+		if (i == 0) {
+			scanner.close();
+			timer.cancel();
 		}
-		
-		
-		
-		
-		
-		
-		
-//		try {
-//			String result = stairs.getJsonFrom(stairs.builder.build());
-//			LOGGER.info("RESULT: " + result);
-//		} catch (URISyntaxException e) {
-//			LOGGER.error("could not build uri", e);
-//		}
 	}
 }

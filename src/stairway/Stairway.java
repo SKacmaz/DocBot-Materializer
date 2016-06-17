@@ -20,9 +20,9 @@ import org.apache.log4j.Logger;
 public class Stairway {
 	static final Logger LOGGER = Logger.getLogger(Stairway.class.getName());
 	
-	private static final String LOCAL_HOST = "172.21.38.200";
+//	private static final String LOCAL_HOST = "172.21.38.200";
 	
-	private static final String HAVEN_HOST = "52.29.104.85";
+	private static final String HAVEN_HOST = "localhost";
 	
 	private static final int PORT = 8081;
 	
@@ -37,6 +37,24 @@ public class Stairway {
 		builder.setPath(ApiHelper.TEST_DEFAULT);
 	}
 
+	/**
+	 * Pulls resource information from Haven
+	 * @return String with information, empty String if no new info
+	 * null if connection failed.
+	 */
+	public String pullFromHaven()
+	{
+		try {
+			return getJsonFrom(builder.build());
+		} catch (ProtocolException e) {
+			LOGGER.error("Could not reach Haven", e);
+			return null;
+		} catch (URISyntaxException e) {
+			LOGGER.error("Could not reach Haven", e);
+			return null;
+		}
+	}
+	
 	
 	/**
 	 * 
@@ -44,15 +62,15 @@ public class Stairway {
 	 * @return
 	 * @throws ProtocolException 
 	 */
-	public String getJsonFrom(URI uri) throws ProtocolException {
-		LOGGER.debug("getting Json from Url: " + uri.toString());
+	private String getJsonFrom(URI uri) throws ProtocolException {
+//		LOGGER.debug("getting Json from Url: " + uri.toString());
 		
 		StringBuilder result = new StringBuilder();
 		HttpURLConnection conn;
 		
 		try {
 			conn = (HttpURLConnection) uri.toURL().openConnection();
-			LOGGER.info("connection to Haven estalished");
+//			LOGGER.info("connection to Haven estalished");
 			conn.setRequestMethod("GET");
 			BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String line;
