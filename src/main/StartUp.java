@@ -66,7 +66,7 @@ public class StartUp {
 				if(update != null && update != "")
 				{
 					LOGGER.info("UPDATE is: " + update);
-					pilot.increase(type, user);
+					pilot.increment("", "");
 					
 				}
 			}

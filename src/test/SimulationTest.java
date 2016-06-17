@@ -66,7 +66,7 @@ public class SimulationTest {
 	public void setup()
 	{
 		adam = new Adam();
-		environment = new DocBotEnvironment(1, 1, 1, 1);
+		environment = new DocBotEnvironment();
 		
 		users.add(USER_A);
 		users.add(USER_B);
@@ -84,11 +84,11 @@ public class SimulationTest {
 	@Test
 	public void VerifySimpleSimulation() {
 		
-		//simulatre USER A launching one resource
-		pilot.increase(TYPE_BLUE, USER_A);
+		//simulate USER A launching one resource
+		pilot.increment(TYPE_BLUE, USER_A);
 		
 		//simulate User A removing same resource
-		pilot.decrease(TYPE_BLUE, USER_A);
+		pilot.decrement(TYPE_BLUE, USER_A);
 
 	}
 }
