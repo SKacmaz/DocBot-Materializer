@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import adam.Adam;
 import adam.IAdam;
-import main.StartUp;
+import main.Materializer;
 import model.GridPlane;
 import model.docBot.DocBotEnvironment;
 import model.docBot.Pilot;
@@ -36,7 +36,7 @@ import stairway.Stairway;
  */
 public class SimulationTest {
 
-	static final Logger LOGGER = Logger.getLogger(StartUp.class.getName());
+	static final Logger LOGGER = Logger.getLogger(Materializer.class.getName());
 	
 	private static final String USER_B = "UserB";
 
