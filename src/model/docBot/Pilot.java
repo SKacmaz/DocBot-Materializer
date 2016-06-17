@@ -74,11 +74,11 @@ public class Pilot {
 		
 		if(typeDelta < 0 && userDelta < 0){
 			this.robot.turnRight(90);
-		}else if(typeDelta < 0 && userDelta >= 0){
+		}else if(typeDelta < 0 && userDelta > 0){
 			this.robot.turnLeft(90);
 		}else if(typeDelta >= 0 && userDelta < 0){
 			this.robot.turnLeft(90);
-		}else if(typeDelta >= 0 && userDelta >= 0){
+		}else if(typeDelta >= 0 && userDelta > 0){
 			this.robot.turnRight(90);
 		}
 		
@@ -86,13 +86,19 @@ public class Pilot {
 		
 		this.robot.moveForward(Math.abs(userDelta));
 		
-		//TODO add if to check which way to turn is right (eventually not needed)
-		this.robot.turnLeft(90);
+		if(typeDelta < 0){
+			this.robot.turnRight(90);
+		} else {
+			this.robot.turnLeft(90);
+		}
 		
 		this.robot.moveForward((this.environment.getMaxDocBotMeasurements() / 2) + (this.environment.getSquareWidth() / 2));
 		
-		//TODO add if to check which way to turn is right (eventually not needed)
-		this.robot.turnLeft(90);
+		if(typeDelta < 0){
+			this.robot.turnRight(90);
+		} else {
+			this.robot.turnLeft(90);
+		}
 		
 		this.environment.setBotRowPos(this.grid.getUserIndex("depot"));
 		this.environment.setBotColPos(this.grid.getTypeIndex(type));
