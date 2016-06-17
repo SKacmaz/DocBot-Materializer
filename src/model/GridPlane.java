@@ -5,6 +5,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * 
+ *
+ * @author Jochen
+ */
 public class GridPlane {
 	private Map<String, Integer> users = new HashMap<String, Integer>();
 	private Map<String, Integer> types = new HashMap<String, Integer>();
@@ -22,7 +27,6 @@ public class GridPlane {
 	private int[][] grid;
 	
 	public GridPlane(){
-		super();
 		this.addUser("depot");
 		
 		//XXX to be delete / just for testing
@@ -30,7 +34,6 @@ public class GridPlane {
 	}
 	
 	public GridPlane(Set<String> users, Set<String> types){
-		super();
 		this.addUser("depot");
 		this.initialize(users, types);
 	}

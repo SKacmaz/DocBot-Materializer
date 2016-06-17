@@ -1,7 +1,11 @@
 package adam;
 
+/**
+ * Allows the materializer to send commands to the Ev3-robot.
+ *
+ * @author Kim, Jochen
+ */
 public interface IAdam {
-	//TODO add precision by using double instead of int
 	
 	/**
 	 * Use this method to move a given length in cm forward.

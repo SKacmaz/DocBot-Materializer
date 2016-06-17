@@ -1,5 +1,10 @@
 package model.docBot;
 
+/**
+ * 
+ *
+ * @author Jochen
+ */
 public class DocBotEnvironment {
 	private double docBotHeigth = 1;
 	private double docBotWidth = 1;

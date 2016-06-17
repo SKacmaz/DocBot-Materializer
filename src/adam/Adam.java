@@ -10,6 +10,11 @@ import org.apache.log4j.Logger;
 
 import stairway.Stairway;
 
+/**
+ * Adam can talk to the Ev3-robot
+ *
+ * @author Kim
+ */
 public class Adam implements IAdam{
 
 	static final Logger LOGGER = Logger.getLogger(Stairway.class.getName());
