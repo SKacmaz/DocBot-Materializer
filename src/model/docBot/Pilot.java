@@ -26,6 +26,7 @@ public class Pilot {
 	 * @return
 	 */
 	public boolean increment(String type, String user){
+		//TODO make sure not to move if (0,0)
 		this.moveRobotToDepot(type);
 		this.robot.grab();
 		this.moveRobotToDestination(user, type);
@@ -74,11 +75,11 @@ public class Pilot {
 		
 		if(typeDelta < 0 && userDelta < 0){
 			this.robot.turnRight(90);
-		}else if(typeDelta < 0 && userDelta > 0){
+		}else if(typeDelta < 0 && userDelta >= 0){
 			this.robot.turnLeft(90);
 		}else if(typeDelta >= 0 && userDelta < 0){
 			this.robot.turnLeft(90);
-		}else if(typeDelta >= 0 && userDelta > 0){
+		}else if(typeDelta >= 0 && userDelta >= 0){
 			this.robot.turnRight(90);
 		}
 		
@@ -131,9 +132,9 @@ public class Pilot {
 		}else if(typeDelta < 0 && userDelta >= 0){
 			this.robot.turnLeft(90);
 		}else if(typeDelta >= 0 && userDelta < 0){
-			this.robot.turnLeft(90);
-		}else if(typeDelta >= 0 && userDelta >= 0){
 			this.robot.turnRight(90);
+		}else if(typeDelta >= 0 && userDelta >= 0){
+			this.robot.turnLeft(90);
 		}
 		
 		userDelta = userDelta * this.environment.getSquareHeight() + userDelta * this.environment.getMaxDocBotMeasurements();
@@ -141,28 +142,38 @@ public class Pilot {
 		this.robot.moveForward(Math.abs(userDelta));
 		
 		//TODO add if to check which way to turn is right (eventually not needed)
-		if(userDelta < 0 && typeDelta < 0){
-			this.robot.turnLeft(90);
-		} else if(userDelta < 0 && typeDelta >= 0){
+		if(typeDelta < 0){
 			this.robot.turnRight(90);
-		} else if(userDelta >= 0 && typeDelta < 0){
-			this.robot.turnRight(90);
-		} else if(userDelta >= 0 && typeDelta >= 0){
+		} else {
 			this.robot.turnLeft(90);
 		}
+//		if(userDelta < 0 && typeDelta < 0){
+//			this.robot.turnLeft(90);
+//		} else if(userDelta < 0 && typeDelta >= 0){
+//			this.robot.turnRight(90);
+//		} else if(userDelta >= 0 && typeDelta < 0){
+//			this.robot.turnRight(90);
+//		} else if(userDelta >= 0 && typeDelta >= 0){
+//			this.robot.turnLeft(90);
+//		}
 		
 		this.robot.moveForward((this.environment.getMaxDocBotMeasurements() / 2) + (this.environment.getSquareWidth() / 2));
 		
 		//TODO add if to check which way to turn is right (eventually not needed)
-		if(userDelta < 0 && typeDelta < 0){
-			this.robot.turnLeft(90);
-		} else if(userDelta < 0 && typeDelta >= 0){
+		if(typeDelta < 0){
 			this.robot.turnRight(90);
-		} else if(userDelta >= 0 && typeDelta < 0){
+		} else {
 			this.robot.turnLeft(90);
-		} else if(userDelta >= 0 && typeDelta >= 0){
-			this.robot.turnRight(90);
 		}
+//		if(userDelta < 0 && typeDelta < 0){
+//			this.robot.turnLeft(90);
+//		} else if(userDelta < 0 && typeDelta >= 0){
+//			this.robot.turnRight(90);
+//		} else if(userDelta >= 0 && typeDelta < 0){
+//			this.robot.turnLeft(90);
+//		} else if(userDelta >= 0 && typeDelta >= 0){
+//			this.robot.turnRight(90);
+//		}
 		
 		this.environment.setBotRowPos(this.grid.getUserIndex(user));
 		this.environment.setBotColPos(this.grid.getTypeIndex(type));
