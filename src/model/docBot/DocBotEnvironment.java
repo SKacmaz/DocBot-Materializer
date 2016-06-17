@@ -1,7 +1,10 @@
 package model.docBot;
 
 /**
- * 
+ * This is class provides the Pilot with important information about the environment the DocBot/robot is in.
+ * Like:
+ * 		- The Position of the DocBot/robot
+ * 		- The measurements of the grid cells and the DocBot/robot itself.
  *
  * @author Jochen
  */
@@ -12,8 +15,23 @@ public class DocBotEnvironment {
 	private double squareWidth = 2;
 	private int botColPos = 0;
 	private int botRowPos = 0;
-		
+	
+	/**
+	 * Use this constructor to create a DocBotEnvironment with default values.
+	 */
+	public DocBotEnvironment(){
+		super();
+	}
+	
+	/**
+	 * Use this method to create a DocBotEnvironment with the passed parameters.
+	 * @param docBotHeigth
+	 * @param docBotWidth
+	 * @param squareHeight
+	 * @param squareWidth
+	 */
 	public DocBotEnvironment(double docBotHeigth, double docBotWidth, double squareHeight, double squareWidth) {
+		super();
 		this.docBotHeigth = docBotHeigth;
 		this.docBotWidth = docBotWidth;
 		this.squareHeight = squareHeight;
