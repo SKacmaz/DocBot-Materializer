@@ -35,17 +35,16 @@ public class DocBotEnvironment {
 	private int botRowPos;
 	
 	/**
-	 * Use this constructor to create a DocBotEnvironment with default values.
-	 * @deprecated
+	 * Use this constructor to create a DocBotEnvironment with default values (iow. the values that we used to test our installation with).
 	 */
 	public DocBotEnvironment(){
 		super();
 		this.botColPos = 0;
 		this.botRowPos = 0;
-		this.squareHeight = 4;
-		this.squareWidth = 4;
-		this.docBotHeigth = 5;
-		this.docBotWidth = 4;
+		this.squareHeight = 25;
+		this.squareWidth = 25;
+		this.docBotHeigth = 25;
+		this.docBotWidth = 18;
 	}
 	
 	/**

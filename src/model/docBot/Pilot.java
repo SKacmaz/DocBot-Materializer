@@ -26,8 +26,12 @@ public class Pilot {
 	 * @return
 	 */
 	public boolean increment(String type, String user){
-		//TODO make sure not to move if (0,0)
-		this.moveRobotToDepot(type);
+		int userDelta = this.grid.getUserIndex(type) - this.environment.getBotRowPos();
+		int typeDelta = this.grid.getTypeIndex(type) - this.environment.getBotColPos();
+		//if the robot is already at the right place it does not need to move so we can skip that.
+		if(userDelta != 0 && typeDelta != 0){
+			this.moveRobotToDepot(type);
+		}
 		this.robot.grab();
 		this.moveRobotToDestination(user, type);
 		this.robot.drop();
@@ -42,7 +46,12 @@ public class Pilot {
 	 * @return
 	 */
 	public boolean decrement(String type, String user){
-		this.moveRobotToDestination(user, type);
+		int userDelta = this.grid.getUserIndex(type) - this.environment.getBotRowPos();
+		int typeDelta = this.grid.getTypeIndex(type) - this.environment.getBotColPos();
+		//if the robot is already at the right place it does not need to move so we can skip that.
+		if(userDelta != 0 && typeDelta != 0){
+			this.moveRobotToDestination(user, type);
+		}
 		this.robot.grab();
 		this.moveRobotToDepot(type);
 		this.robot.drop();

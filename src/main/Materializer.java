@@ -3,8 +3,10 @@ package main;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -20,7 +22,7 @@ import stairway.Stairway;
 /**
  * This class initializes all components of the materializer.
  * 
- * @author Kim
+ * @author Kim Riechert, Jochen Joswig
  */
 public class Materializer {
 	static final Logger LOGGER = Logger.getLogger(Materializer.class.getName());
@@ -47,9 +49,23 @@ public class Materializer {
 		stairs = new Stairway();
 		adam = new Adam();
 		environment = new DocBotEnvironment();
+		users = new HashMap<String, User>();
+//		//this method needs some checking
+//		//it should go through all the users and add them to the userSet
+//		//then it should go through all the resources and them to the typeSet
+//		//the last step may not be usefull since there might be types of which no users has any instances yet -> they wouldn't make the list
+//		Set<String> userSet = new HashSet<String>();
+//		Set<String> typeSet = new HashSet<String>();
+//		for(String user : users.keySet()){
+//			User u = users.get(user);
+//			userSet.add(u.getName());
+//			for(String type : u.getResources().keySet()){
+//				typeSet.add(u.getResources().get(type));
+//			}
+//		}
+//		plane = new GridPlane(userSet, typeSet);
 		plane = new GridPlane();
 		pilot = new Pilot(plane, adam, environment);
-		users = new HashMap<>();
 	}
 	
 

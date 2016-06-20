@@ -34,4 +34,8 @@ public class User {
 	{
 		return resources;
 	}
+
+	public String getName() {
+		return name;
+	}
 }
