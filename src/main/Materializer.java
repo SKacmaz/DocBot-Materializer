@@ -111,6 +111,10 @@ public class Materializer {
 		{
 			LOGGER.info("UPDATE is: " + update);
 			
+			//parse update String
+			
+			//control pilot accordingly
+			
 		}
 	}
 }
