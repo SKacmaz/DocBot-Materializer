@@ -1,12 +1,9 @@
 package main;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -22,7 +19,7 @@ import stairway.Stairway;
 /**
  * This class initializes all components of the materializer.
  * 
- * @author Kim Riechert, Jochen Joswig
+ * @author Kim Reichert, Jochen Joswig
  */
 public class Materializer {
 	static final Logger LOGGER = Logger.getLogger(Materializer.class.getName());
@@ -92,7 +89,7 @@ public class Materializer {
 		};
 		
 		Timer timer = new Timer();
-		timer.schedule(pollFromHaven, 10000, 10000);
+		timer.schedule(pollFromHaven, 100, 10000);
 		
 		LOGGER.debug("Please, enter 0 to exit.");
 		int i = scanner.nextInt();
