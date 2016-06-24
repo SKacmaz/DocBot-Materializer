@@ -34,26 +34,12 @@ public class Materializer {
 	//component to talk with Haven
 	final Stairway stairs;
 	
-	//component to talk to Ev3
-	final IAdam adam;
-	
-	//represents the dimensions of the robot and its environment
-	final DocBotEnvironment environment;
-	
-	//Represents the grid in which the resources will be materialized
-	final GridPlane plane;
-	
 	//component for handling physical world logic
 	final Pilot pilot;
-	
-	final Map<String, User> users;
 	
 	public Materializer()
 	{
 		stairs = new Stairway();
-		adam = new Adam();
-		environment = new DocBotEnvironment();
-		users = new HashMap<String, User>();
 //		//this method needs some checking
 //		//it should go through all the users and add them to the userSet
 //		//then it should go through all the resources and them to the typeSet
@@ -68,8 +54,7 @@ public class Materializer {
 //			}
 //		}
 //		plane = new GridPlane(userSet, typeSet);
-		plane = new GridPlane();
-		pilot = new Pilot(plane, adam, environment);
+		pilot = new Pilot(new GridPlane(), new Adam(), new DocBotEnvironment());
 	}
 	
 
