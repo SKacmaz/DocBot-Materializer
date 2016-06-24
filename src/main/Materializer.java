@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -114,6 +115,8 @@ public class Materializer {
 		{
 			LOGGER.info("UPDATE is: " + update);
 			
+			GridPlane gp_new = new GridPlane();
+			
 			//parse update String
 			JSONObject json = null;
 			JSONArray resources = null;
@@ -133,13 +136,29 @@ public class Materializer {
 					System.out.println(type);
 					System.out.println(userName);
 					
-					pilot.increment(type, userName);
+					gp_new.increment(userName, type);
 				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			//control pilot accordingly
+			GridPlane gp_old = this.pilot.getGridPlane();
+			
+			Set<String> users = gp_old.getUsers().keySet();
+			Set<String> types = gp_old.getTypes().keySet();
+			
+			for(String u : users){
+				for(String t : types){
+					if(gp_old.get(u, t) < gp_new.get(u, t)){
+						//if the old Grid does not have enough tokens for a given user and type
+						pilot.increment(t, u);
+					} else if(gp_old.get(u, t) > gp_new.get(u, t)){
+						//if the old Grid has to many tokens for a given user and type
+						pilot.decrement(t, u);
+					}
+				}
+			}
 			
 		}
 	}

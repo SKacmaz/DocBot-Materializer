@@ -82,7 +82,7 @@ public class GridPlane {
 	 * @see addUser(), addUsers(), addType(), addTypes()
 	 */
 	public void initialize(){
-		this.grid = new int[this.types.size()][this.users.size()];
+		this.grid = new int[this.users.size()][this.types.size()];
 	}
 	
 	/**
@@ -95,7 +95,7 @@ public class GridPlane {
 		this.addUsers(users);
 		this.addTypes(types);
 		
-		this.grid = new int[this.types.size()][this.users.size()];
+		this.initialize();
 	}
 	
 	/**
@@ -107,7 +107,7 @@ public class GridPlane {
 		int i = this.users.get(user).intValue();
 		int j = this.types.get(type).intValue();
 		
-		this.grid[j][i]++;
+		this.grid[i][j]++;
 	}
 	
 	/**
@@ -119,7 +119,7 @@ public class GridPlane {
 		int i = this.users.get(user).intValue();
 		int j = this.types.get(type).intValue();
 		
-		this.grid[j][i]--;
+		this.grid[i][j]--;
 	}
 	
 	/**
@@ -159,6 +159,13 @@ public class GridPlane {
 	public int[][] getGrid() {
 		return grid;
 	}
+	
+	public int get(String user, String type){
+		int u = this.users.get(user).intValue();
+		int t = this.types.get(type).intValue();
+		
+		return this.grid[u][t];
+	}
 
 	public void setGrid(int[][] grid) {
 		this.grid = grid;
@@ -166,8 +173,8 @@ public class GridPlane {
 	
 	/**
 	 * Use this method to initialize the GridPlane with default data:
-	 * users: Jochen, Kim, Semih
-	 * types: A, B, C
+	 * users: Bob Marley, Marilyn Monroe
+	 * types: blue, green
 	 */
 	public void fillWithdefaultValues(){
 		Set<String> users = new HashSet<String>();

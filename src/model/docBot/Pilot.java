@@ -168,4 +168,8 @@ public class Pilot {
 		this.environment.setBotRowPos(this.grid.getUserIndex(user));
 		this.environment.setBotColPos(this.grid.getTypeIndex(type));
 	}
+	
+	public GridPlane getGridPlane(){
+		return this.grid;
+	}
 }
