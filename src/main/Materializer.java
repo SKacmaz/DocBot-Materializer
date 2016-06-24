@@ -121,7 +121,19 @@ public class Materializer {
 				json = new JSONObject(update);
 				resources = (JSONArray) json.get("resources");
 				for(int i = 0; i < resources.length(); i++){
-					System.out.println(resources.get(i).toString());
+					String userName = "";
+					String type = "";
+					json = (JSONObject) resources.get(i);
+					JSONObject user = (JSONObject) json.get("user");
+					userName += user.getString("firstName");
+					userName += " ";
+					userName += user.getString("lastName");
+					type = json.getString("type");
+					
+					System.out.println(type);
+					System.out.println(userName);
+					
+					pilot.increment(type, userName);
 				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

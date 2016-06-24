@@ -173,13 +173,11 @@ public class GridPlane {
 		Set<String> users = new HashSet<String>();
 		Set<String> types = new HashSet<String>();
 		
-		users.add("Jochen");
-		users.add("Kim");
-		users.add("Semih");
+		users.add("Bob Marley");
+		users.add("Marilyn Monroe");
 		
-		types.add("A");
-		types.add("B");
-		types.add("C");
+		types.add("blue");
+		types.add("green");
 		
 		this.initialize(users, types);
 	}
