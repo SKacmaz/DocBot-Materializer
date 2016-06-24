@@ -9,6 +9,8 @@ import java.util.TimerTask;
 
 import org.apache.log4j.Logger;
 
+import com.google.gson.Gson;
+
 import adam.Adam;
 import adam.IAdam;
 import model.GridPlane;
@@ -109,6 +111,7 @@ public class Materializer {
 			LOGGER.info("UPDATE is: " + update);
 			
 			//parse update String
+			Gson gson = new Gson();
 			
 			//control pilot accordingly
 			
