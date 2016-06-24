@@ -26,7 +26,7 @@ public class Pilot {
 	 * @return
 	 */
 	public boolean increment(String type, String user){
-		int userDelta = this.grid.getUserIndex(type) - this.environment.getBotRowPos();
+		int userDelta = this.grid.getUserIndex(user) - this.environment.getBotRowPos();
 		int typeDelta = this.grid.getTypeIndex(type) - this.environment.getBotColPos();
 		//if the robot is already at the right place it does not need to move so we can skip that.
 		if(userDelta != 0 && typeDelta != 0){
@@ -46,7 +46,7 @@ public class Pilot {
 	 * @return
 	 */
 	public boolean decrement(String type, String user){
-		int userDelta = this.grid.getUserIndex(type) - this.environment.getBotRowPos();
+		int userDelta = this.grid.getUserIndex(user) - this.environment.getBotRowPos();
 		int typeDelta = this.grid.getTypeIndex(type) - this.environment.getBotColPos();
 		//if the robot is already at the right place it does not need to move so we can skip that.
 		if(userDelta != 0 && typeDelta != 0){
