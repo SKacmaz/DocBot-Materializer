@@ -8,8 +8,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import adam.Adam;
 import adam.IAdam;
@@ -111,8 +115,18 @@ public class Materializer {
 			LOGGER.info("UPDATE is: " + update);
 			
 			//parse update String
-			Gson gson = new Gson();
-			
+			JSONObject json = null;
+			JSONArray resources = null;
+			try {
+				json = new JSONObject(update);
+				resources = (JSONArray) json.get("resources");
+				for(int i = 0; i < resources.length(); i++){
+					System.out.println(resources.get(i).toString());
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			//control pilot accordingly
 			
 		}
