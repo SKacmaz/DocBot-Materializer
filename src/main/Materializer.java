@@ -133,6 +133,9 @@ public class Materializer {
 			Set<String> users = gp_old.getUsers().keySet();
 			Set<String> types = gp_old.getTypes().keySet();
 			
+			pilot.printGrid();
+			gp_new.printGridPlane();
+			
 			for(String u : users){
 				for(String t : types){
 					if(gp_old.get(u, t) < gp_new.get(u, t)){
@@ -144,7 +147,6 @@ public class Materializer {
 					}
 				}
 			}
-			
 		}
 	}
 }

@@ -172,4 +172,10 @@ public class Pilot {
 	public GridPlane getGridPlane(){
 		return this.grid;
 	}
+	
+	public void printGrid(){
+		System.out.println(this.environment.getBotColPos() + " " +  this.environment.getBotRowPos());
+		
+		this.grid.printGridPlane();
+	}
 }

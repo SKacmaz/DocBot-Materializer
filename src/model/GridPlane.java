@@ -188,4 +188,22 @@ public class GridPlane {
 		
 		this.initialize(users, types);
 	}
+	
+	public void printGridPlane(){
+		String out = "    ";
+		
+		for(String t : this.getTypes().keySet()){
+			out += "| " + t.charAt(0) + " ";
+		}
+		
+		System.out.println(out);
+		
+		for(String u : this.getUsers().keySet()){
+			out = " " + u.charAt(0) + u.charAt(1) + " ";
+			for(String t : this.getTypes().keySet()){
+				out += "| " + this.get(u, t) + " ";
+			}
+			System.out.println(out);
+		}
+	}
 }
