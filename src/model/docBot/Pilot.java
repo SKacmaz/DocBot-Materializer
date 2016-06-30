@@ -25,7 +25,7 @@ public class Pilot {
 	 * @param user
 	 * @return
 	 */
-	public boolean increment(String type, String user){
+	public boolean increment(String user, String type){
 		int userDelta = this.grid.getUserIndex(user) - this.environment.getBotRowPos();
 		int typeDelta = this.grid.getTypeIndex(type) - this.environment.getBotColPos();
 		//if the robot is already at the right place it does not need to move so we can skip that.
@@ -45,7 +45,7 @@ public class Pilot {
 	 * @param user
 	 * @return
 	 */
-	public boolean decrement(String type, String user){
+	public boolean decrement(String user, String type){
 		int userDelta = this.grid.getUserIndex(user) - this.environment.getBotRowPos();
 		int typeDelta = this.grid.getTypeIndex(type) - this.environment.getBotColPos();
 		//if the robot is already at the right place it does not need to move so we can skip that.

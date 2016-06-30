@@ -139,10 +139,10 @@ public class Materializer {
 				for(String t : types){
 					if(gp_old.get(u, t) < gp_new.get(u, t)){
 						//if the old Grid does not have enough tokens for a given user and type
-						pilot.increment(t, u);
+						pilot.increment(u, t);
 					} else if(gp_old.get(u, t) > gp_new.get(u, t)){
 						//if the old Grid has to many tokens for a given user and type
-						pilot.decrement(t, u);
+						pilot.decrement(u, t);
 					}
 				}
 			}
