@@ -15,6 +15,8 @@ public class GridPlane {
 	private Map<String, Integer> types = new HashMap<String, Integer>();
 	
 	/**
+	 * 1.dimension: user
+	 * 2.dimension: type
 	 *       | type1 | type2 | ...
 	 * ------+-------+-------+-----
 	 * depot | 0...n | 0...m | ...
@@ -104,10 +106,10 @@ public class GridPlane {
 	 * @param type
 	 */
 	public void increment(String user, String type){
-		int i = this.users.get(user).intValue();
-		int j = this.types.get(type).intValue();
+		int u = this.users.get(user).intValue();
+		int t = this.types.get(type).intValue();
 		
-		this.grid[i][j]++;
+		this.grid[u][t]++;
 	}
 	
 	/**
@@ -116,10 +118,10 @@ public class GridPlane {
 	 * @param type
 	 */
 	public void decrement(String user, String type){
-		int i = this.users.get(user).intValue();
-		int j = this.types.get(type).intValue();
+		int u = this.users.get(user).intValue();
+		int t = this.types.get(type).intValue();
 		
-		this.grid[i][j]--;
+		this.grid[u][t]--;
 	}
 	
 	/**

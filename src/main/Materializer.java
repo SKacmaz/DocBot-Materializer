@@ -124,10 +124,9 @@ public class Materializer {
 					gp_new.increment(userName, type);
 				}
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//control pilot accordingly
+			//control pilot accordingly, by comparing the newly generated GridPlane with the old one and take necessary actions to change the old one into the new one.
 			GridPlane gp_old = this.pilot.getGridPlane();
 			
 			Set<String> users = gp_old.getUsers().keySet();
