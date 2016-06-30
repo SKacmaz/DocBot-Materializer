@@ -9,9 +9,9 @@ import model.GridPlane;
  *
  */
 public class Pilot {
-	private final IAdam robot;
-	private final GridPlane grid;
-	private final DocBotEnvironment environment;
+	protected final IAdam robot;
+	protected final GridPlane grid;
+	protected final DocBotEnvironment environment;
 	
 	public Pilot(GridPlane grid, IAdam robot, DocBotEnvironment environment){
 		this.grid = grid;

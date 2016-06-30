@@ -1,12 +1,15 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 /**
- * 
+ * This class provides
  *
  * @author Jochen
  */
@@ -50,11 +53,17 @@ public class GridPlane {
 		this.initialize(users, types);
 	}
 	
-	public void addUser(String user){
+	protected void addUser(String user){
 		this.users.put(user, new Integer(this.users.size()));
 	}
 	
-	public void addUsers(Set<String> users){
+	protected void addUsers(Set<String> users){
+		for(String user : users){
+			this.addUser(user);
+		}
+	}
+	
+	protected void addUsers(List<String> users){
 		for(String user : users){
 			this.addUser(user);
 		}
@@ -64,7 +73,7 @@ public class GridPlane {
 	 * Use this method to add a single type to the grid.
 	 * @param type
 	 */
-	public void addType(String type){
+	protected void addType(String type){
 		this.types.put(type, new Integer(this.types.size()));
 	}
 	
@@ -72,7 +81,17 @@ public class GridPlane {
 	 * Use this method to add multiple types to the grid.
 	 * @param types
 	 */
-	public void addTypes(Set<String> types){
+	protected void addTypes(Set<String> types){
+		for(String type : types){
+			this.addType(type);
+		}
+	}
+	
+	/**
+	 * Use this method to add multiple types to the grid.
+	 * @param types
+	 */
+	protected void addTypes(List<String> types){
 		for(String type : types){
 			this.addType(type);
 		}
@@ -94,8 +113,15 @@ public class GridPlane {
 	 * @param types
 	 */
 	public void initialize(Set<String> users, Set<String> types){
-		this.addUsers(users);
-		this.addTypes(types);
+		
+		ArrayList<String> u = new ArrayList<String>(users);
+		ArrayList<String> t = new ArrayList<String>(types);
+		
+		Collections.sort(u);
+		Collections.sort(t);
+		
+		this.addUsers(u);
+		this.addTypes(t);
 		
 		this.initialize();
 	}
@@ -178,7 +204,7 @@ public class GridPlane {
 	 * users: Bob Marley, Marilyn Monroe
 	 * types: blue, green
 	 */
-	public void fillWithdefaultValues(){
+	private void fillWithdefaultValues(){
 		Set<String> users = new HashSet<String>();
 		Set<String> types = new HashSet<String>();
 		
@@ -191,6 +217,10 @@ public class GridPlane {
 		this.initialize(users, types);
 	}
 	
+	/**
+	 * This method is for testing and debugging. It prints out the current status of the grid, e.g. all the columns all the rows and the values in them.
+	 * FYI: it only prints out the first letter of the type and the first two letters of the user. Also if the number are greater then 9 the visuals will fall apart.
+	 */
 	public void printGridPlane(){
 		String out = "    ";
 		

@@ -26,20 +26,23 @@ import stairway.Stairway;
 /**
  * This class initializes all components of the materializer.
  * 
- * @author Kim Reichert, Jochen Joswig
+ * @author Jochen Joswig, Kim Reichert
  */
 public class Materializer {
 	static final Logger LOGGER = Logger.getLogger(Materializer.class.getName());
 	
 	//component to talk with Haven
-	final Stairway stairs;
+	protected final Stairway stairs;
 	
 	//component for handling physical world logic
-	final Pilot pilot;
+	protected final Pilot pilot;
+	
+	protected final GridPlane grid;
 	
 	public Materializer()
 	{
 		stairs = new Stairway();
+//		TODO delete
 //		//this method needs some checking
 //		//it should go through all the users and add them to the userSet
 //		//then it should go through all the resources and them to the typeSet
@@ -53,8 +56,10 @@ public class Materializer {
 //				typeSet.add(u.getResources().get(type));
 //			}
 //		}
-//		plane = new GridPlane(userSet, typeSet);
-		pilot = new Pilot(new GridPlane(), new Adam(), new DocBotEnvironment());
+		
+		//TODO add better grid initiation here it will automatically take care the the right grid will be available where need with in the rest of Materializer.class
+		grid = new GridPlane();
+		pilot = new Pilot(grid, new Adam(), new DocBotEnvironment());
 	}
 	
 
@@ -100,7 +105,7 @@ public class Materializer {
 		{
 			LOGGER.info("UPDATE is: " + update);
 			
-			GridPlane gp_new = new GridPlane();
+			GridPlane gp_new = grid;
 			
 			//parse update String
 			JSONObject json = null;
