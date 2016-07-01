@@ -28,19 +28,19 @@ public class DocBotEnvironment {
 	/**
 	 * The current column position of the robot.
 	 */
-	private int botColPos;
+	private int botTypePosition;
 	/**
 	 * The current row position of the robot.
 	 */
-	private int botRowPos;
+	private int botUserPosition;
 	
 	/**
 	 * Use this constructor to create a DocBotEnvironment with default values (iow. the values that we used to test our installation with).
 	 */
 	public DocBotEnvironment(){
 		super();
-		this.botColPos = 0;
-		this.botRowPos = 0;
+		this.botTypePosition = 0;
+		this.botUserPosition = 0;
 		this.squareHeight = 25;
 		this.squareWidth = 25;
 		this.docBotHeigth = 25;
@@ -59,8 +59,8 @@ public class DocBotEnvironment {
 		this.docBotWidth = docBotWidth;
 		this.squareHeight = squareHeight;
 		this.squareWidth = squareWidth;
-		this.botColPos = botColPos;
-		this.botRowPos = botRowPos;
+		this.botTypePosition = botColPos;
+		this.botUserPosition = botRowPos;
 	}
 	
 	public double getMaxDocBotMeasurements(){
@@ -85,20 +85,20 @@ public class DocBotEnvironment {
 		return squareWidth;
 	}
 
-	public int getBotColPos() {
-		return botColPos;
+	public int getBotTypePosition() {
+		return botTypePosition;
 	}
 
-	public void setBotColPos(int botColPos) {
-		this.botColPos = botColPos;
+	public void setBotTypePosition(int botColPos) {
+		this.botTypePosition = botColPos;
 	}
 
-	public int getBotRowPos() {
-		return botRowPos;
+	public int getBotUserPosition() {
+		return botUserPosition;
 	}
 
-	public void setBotRowPos(int botRowPos) {
-		this.botRowPos = botRowPos;
+	public void setBotUserPosition(int botRowPos) {
+		this.botUserPosition = botRowPos;
 	}
 
 }

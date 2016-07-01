@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
@@ -86,7 +87,7 @@ public class Materializer {
 		};
 		
 		Timer timer = new Timer();
-		timer.schedule(pollFromHaven, 100, 10000);
+		timer.schedule(pollFromHaven, 100, 300000);
 		
 		LOGGER.debug("Please, enter 0 to exit.");
 		int i = scanner.nextInt();
@@ -148,6 +149,11 @@ public class Materializer {
 					} else if(gp_old.get(u, t) > gp_new.get(u, t)){
 						//if the old Grid has to many tokens for a given user and type
 						pilot.decrement(u, t);
+					}
+					try {
+						TimeUnit.SECONDS.sleep(20);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
 					}
 				}
 			}
