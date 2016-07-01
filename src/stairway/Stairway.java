@@ -12,9 +12,9 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.log4j.Logger;
 
 /**
- * This is a first test class that talks to haven
- * @author Kim
- *
+ * This is a first test class that talks to haven.
+ * 
+ * @author Kim Reichert
  */
 public class Stairway {
 	static final Logger LOGGER = Logger.getLogger(Stairway.class.getName());

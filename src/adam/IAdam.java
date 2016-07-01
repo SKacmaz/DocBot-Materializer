@@ -1,9 +1,9 @@
 package adam;
 
 /**
- * Allows the materializer to send commands to the Ev3-robot.
+ * This interface defines the commands that the pilot can use to control the Ev3-robot.
  *
- * @author Kim, Jochen
+ * @author Jochen Joswig, Kim Reichert
  */
 public interface IAdam {
 	
