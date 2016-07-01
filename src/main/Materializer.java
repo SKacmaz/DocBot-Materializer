@@ -38,8 +38,6 @@ public class Materializer {
 	//component for handling physical world logic
 	protected final Pilot pilot;
 	
-	protected final GridPlane grid;
-	
 	public Materializer()
 	{
 		stairs = new Stairway();
@@ -58,9 +56,7 @@ public class Materializer {
 //			}
 //		}
 		
-		//TODO add better grid initiation here it will automatically take care the the right grid will be available where need with in the rest of Materializer.class
-		grid = new GridPlane();
-		pilot = new Pilot(grid, new Adam(), new DocBotEnvironment());
+		pilot = new Pilot(new GridPlane(), new Adam(), new DocBotEnvironment());
 	}
 	
 
@@ -106,7 +102,7 @@ public class Materializer {
 		{
 			LOGGER.info("UPDATE is: " + update);
 			
-			GridPlane gp_new = grid;
+			GridPlane gp_new = new GridPlane();
 			
 			//parse update String
 			JSONObject json = null;

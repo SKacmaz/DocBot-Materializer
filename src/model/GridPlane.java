@@ -34,10 +34,11 @@ public class GridPlane {
 	/**
 	 * Use this constructor to create a GridPlane with default values.
 	 * @see fillWithdefaultValues()
-	 * @deprecated
 	 */
 	public GridPlane(){
 		this.addUser("depot");
+		//TODO make flexiable e.g. make it so that it the users and types are read from a .config-file.
+		
 		
 		//XXX to be delete / just for testing
 		this.fillWithdefaultValues();
