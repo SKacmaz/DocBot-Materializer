@@ -12,9 +12,9 @@ import exceptions.UnknownTypeException;
 import exceptions.UnknownUserException;
 
 /**
- * This class provides
+ * This class provides the grid for the pilot for navigation.
  *
- * @author Jochen
+ * @author Jochen Joswig
  */
 public class GridPlane {
 	private Map<String, Integer> users = new HashMap<String, Integer>();

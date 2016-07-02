@@ -25,7 +25,7 @@ import model.docBot.Pilot;
 import stairway.Stairway;
 
 /**
- * This class initializes all components of the materializer.
+ * This the main class of the Materializer. It initializes all components of the Materializer and parses json from Haven.
  * 
  * @author Jochen Joswig, Kim Reichert
  */

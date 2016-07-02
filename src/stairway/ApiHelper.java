@@ -1,5 +1,9 @@
 package stairway;
-
+/**
+ * This holds configuration values for the Stairway-Class.
+ * 
+ * @author Kim Reichert
+ */
 public class ApiHelper {
 	public static final String RESOURCES = "/resources";
 	
