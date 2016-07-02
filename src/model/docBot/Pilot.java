@@ -1,6 +1,8 @@
 package model.docBot;
 
 import adam.IAdam;
+import exceptions.UnknownTypeException;
+import exceptions.UnknownUserException;
 import model.GridPlane;
 /**
  * This class controls the robot and the environment the robot is in,
@@ -26,17 +28,28 @@ public class Pilot {
 	 * @return
 	 */
 	public boolean increment(String user, String type){
-		int userDelta = this.grid.getUserIndex(user) - this.environment.getBotUserPosition();
-		int typeDelta = this.grid.getTypeIndex(type) - this.environment.getBotTypePosition();
-		//if the robot is already at the right place it does not need to move so we can skip that.
-		if(userDelta != 0 && typeDelta != 0){
-			this.moveRobotToDepot(type);
+		try{
+			int userDelta = this.grid.getUserIndex(user) - this.environment.getBotUserPosition();
+			int typeDelta = this.grid.getTypeIndex(type) - this.environment.getBotTypePosition();
+			
+			//if the robot is already at the right place it does not need to move so we can skip that.
+			if(userDelta != 0 && typeDelta != 0){
+				this.moveRobotToDepot(type);
+			}
+			
+			while(!this.robot.grab()){}
+			this.moveRobotToDestination(user, type);
+			while(!this.robot.drop()){}
+			this.grid.increment(user, type);
+			return true;
+			
+		}catch(UnknownUserException e){
+			System.err.println("Unknown user: " + user);
+		}catch(UnknownTypeException e){
+			System.err.println("Unknown type: "+ type);
 		}
-		while(!this.robot.grab()){}
-		this.moveRobotToDestination(user, type);
-		while(!this.robot.drop()){}
-		this.grid.increment(user, type);
-		return true;
+		
+		return false;
 	}
 	
 	/**
@@ -46,17 +59,25 @@ public class Pilot {
 	 * @return
 	 */
 	public boolean decrement(String user, String type){
-		int userDelta = this.grid.getUserIndex(user) - this.environment.getBotUserPosition();
-		int typeDelta = this.grid.getTypeIndex(type) - this.environment.getBotTypePosition();
-		//if the robot is already at the right place it does not need to move so we can skip that.
-		if(userDelta != 0 && typeDelta != 0){
-			this.moveRobotToDestination(user, type);
+		try{
+			int userDelta = this.grid.getUserIndex(user) - this.environment.getBotUserPosition();
+			int typeDelta = this.grid.getTypeIndex(type) - this.environment.getBotTypePosition();
+			//if the robot is already at the right place it does not need to move so we can skip that.
+			if(userDelta != 0 && typeDelta != 0){
+				this.moveRobotToDestination(user, type);
+			}
+			while(!this.robot.grab()){}
+			this.moveRobotToDepot(type);
+			while(!this.robot.drop()){}
+			this.grid.decrement(user, type);
+			return true;
+		}catch(UnknownUserException e){
+			System.err.println("Unknown user: " + user);
+		}catch(UnknownTypeException e){
+			System.err.println("Unknown type: "+ type);
 		}
-		while(!this.robot.grab()){}
-		this.moveRobotToDepot(type);
-		while(!this.robot.drop()){}
-		this.grid.decrement(user, type);
-		return true;
+		
+		return false;
 	}
 	
 	/**
@@ -67,51 +88,57 @@ public class Pilot {
 	 */
 	private void moveRobotToDepot(String type){
 		//horizontal movement
-		double typeDelta = (this.grid.getTypeIndex(type) - this.environment.getBotTypePosition());
-		
-		if(typeDelta < 0){
-			while(!this.robot.turnRight(90)){}
-		} else {
-			while(!this.robot.turnLeft(90)){}
+		try{
+			double typeDelta = (this.grid.getTypeIndex(type) - this.environment.getBotTypePosition());
+			
+			if(typeDelta < 0){
+				while(!this.robot.turnRight(90)){}
+			} else {
+				while(!this.robot.turnLeft(90)){}
+			}
+			
+			typeDelta = typeDelta * this.environment.getSquareWidth() + typeDelta * this.environment.getMaxDocBotMeasurements();
+					
+			while(!this.robot.moveForward(Math.abs(typeDelta) + (this.environment.getSquareWidth()/2) + (this.environment.getMaxDocBotMeasurements()/2))){}
+			
+			//vertical movement
+			double userDelta = (this.grid.getUserIndex("depot") - this.environment.getBotUserPosition());
+			
+			if(typeDelta < 0 && userDelta < 0){
+				while(!this.robot.turnRight(90)){}
+			}else if(typeDelta < 0 && userDelta >= 0){
+				while(!this.robot.turnLeft(90)){}
+			}else if(typeDelta >= 0 && userDelta < 0){
+				while(!this.robot.turnLeft(90)){}
+			}else if(typeDelta >= 0 && userDelta >= 0){
+				while(!this.robot.turnRight(90)){}
+			}
+			
+			userDelta = userDelta * this.environment.getSquareHeight() + userDelta * this.environment.getMaxDocBotMeasurements();
+			
+			while(!this.robot.moveForward(Math.abs(userDelta))){}
+			
+			if(typeDelta < 0){
+				while(!this.robot.turnRight(90)){}
+			} else {
+				while(!this.robot.turnLeft(90)){}
+			}
+			
+			while(!this.robot.moveForward((this.environment.getMaxDocBotMeasurements() / 2) + (this.environment.getSquareWidth() / 2))){}
+			
+			if(typeDelta < 0){
+				while(!this.robot.turnRight(90)){}
+			} else {
+				while(!this.robot.turnLeft(90)){}
+			}
+			
+			this.environment.setBotUserPosition(this.grid.getUserIndex("depot"));
+			this.environment.setBotTypePosition(this.grid.getTypeIndex(type));
+		}catch(UnknownUserException e){
+			System.err.println("The depot is unknown.");
+		}catch(UnknownTypeException e){
+			System.err.println("Unknown type: "+ type);
 		}
-		
-		typeDelta = typeDelta * this.environment.getSquareWidth() + typeDelta * this.environment.getMaxDocBotMeasurements();
-				
-		while(!this.robot.moveForward(Math.abs(typeDelta) + (this.environment.getSquareWidth()/2) + (this.environment.getMaxDocBotMeasurements()/2))){}
-		
-		//vertical movement
-		double userDelta = (this.grid.getUserIndex("depot") - this.environment.getBotUserPosition());
-		
-		if(typeDelta < 0 && userDelta < 0){
-			while(!this.robot.turnRight(90)){}
-		}else if(typeDelta < 0 && userDelta >= 0){
-			while(!this.robot.turnLeft(90)){}
-		}else if(typeDelta >= 0 && userDelta < 0){
-			while(!this.robot.turnLeft(90)){}
-		}else if(typeDelta >= 0 && userDelta >= 0){
-			while(!this.robot.turnRight(90)){}
-		}
-		
-		userDelta = userDelta * this.environment.getSquareHeight() + userDelta * this.environment.getMaxDocBotMeasurements();
-		
-		while(!this.robot.moveForward(Math.abs(userDelta))){}
-		
-		if(typeDelta < 0){
-			while(!this.robot.turnRight(90)){}
-		} else {
-			while(!this.robot.turnLeft(90)){}
-		}
-		
-		while(!this.robot.moveForward((this.environment.getMaxDocBotMeasurements() / 2) + (this.environment.getSquareWidth() / 2))){}
-		
-		if(typeDelta < 0){
-			while(!this.robot.turnRight(90)){}
-		} else {
-			while(!this.robot.turnLeft(90)){}
-		}
-		
-		this.environment.setBotUserPosition(this.grid.getUserIndex("depot"));
-		this.environment.setBotTypePosition(this.grid.getTypeIndex(type));
 	}
 	
 	/**
@@ -120,6 +147,7 @@ public class Pilot {
 	 * @param type
 	 */
 	private void moveRobotToDestination(String user, String type){
+		try{
 		//horizontal movement
 		double typeDelta = (this.grid.getTypeIndex(type) - this.environment.getBotTypePosition());
 		
@@ -167,6 +195,12 @@ public class Pilot {
 		
 		this.environment.setBotUserPosition(this.grid.getUserIndex(user));
 		this.environment.setBotTypePosition(this.grid.getTypeIndex(type));
+
+		}catch(UnknownUserException e){
+			System.err.println("Unknown user: " + user);
+		}catch(UnknownTypeException e){
+			System.err.println("Unknown type: "+ type);
+		}
 	}
 	
 	public GridPlane getGridPlane(){

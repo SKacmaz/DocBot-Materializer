@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import exceptions.UnknownTypeException;
+import exceptions.UnknownUserException;
+
 /**
  * This class provides
  *
@@ -133,10 +136,15 @@ public class GridPlane {
 	 * @param type
 	 */
 	public void increment(String user, String type){
-		int u = this.users.get(user).intValue();
-		int t = this.types.get(type).intValue();
-		
-		this.grid[u][t]++;
+		try{
+			int u = this.getUserIndex(user);
+			int t = this.getTypeIndex(type);
+			this.grid[u][t]++;
+		}catch(UnknownUserException e){
+			System.err.println("Unknown user: " + user);
+		}catch(UnknownTypeException e){
+			System.err.println("Unknown type: "+ type);
+		}
 	}
 	
 	/**
@@ -145,10 +153,15 @@ public class GridPlane {
 	 * @param type
 	 */
 	public void decrement(String user, String type){
-		int u = this.users.get(user).intValue();
-		int t = this.types.get(type).intValue();
-		
-		this.grid[u][t]--;
+		try{
+			int u = this.getUserIndex(user);
+			int t = this.getTypeIndex(type);
+			this.grid[u][t]--;
+		}catch(UnknownUserException e){
+			System.err.println("Unknown user: " + user);
+		}catch(UnknownTypeException e){
+			System.err.println("Unknown type: "+ type);
+		}
 	}
 	
 	/**
@@ -156,8 +169,12 @@ public class GridPlane {
 	 * @param user
 	 * @return int - corresponding index for the given user
 	 */
-	public int getUserIndex(String user){
-		return this.users.get(user).intValue();
+	public int getUserIndex(String user) throws UnknownUserException{
+		try{
+			return this.users.get(user).intValue();
+		}catch(Exception e){
+			throw new UnknownUserException(user);
+		}
 	}
 	
 	/**
@@ -165,8 +182,12 @@ public class GridPlane {
 	 * @param type
 	 * @return int - corresponding index for the given type.
 	 */
-	public int getTypeIndex(String type){
-		return this.types.get(type).intValue();
+	public int getTypeIndex(String type) throws UnknownTypeException{
+		try{
+			return this.types.get(type).intValue();
+		}catch(Exception e){
+			throw new UnknownTypeException(type);
+		}
 	}
 
 	public Map<String, Integer> getUsers() {
@@ -188,12 +209,24 @@ public class GridPlane {
 	public int[][] getGrid() {
 		return grid;
 	}
-	
+	/**
+	 * Use this method to obtain the amount of containers for a given user and type.
+	 * @param user
+	 * @param type
+	 * @return - the value of the requested field if it exists, else -1.
+	 */
 	public int get(String user, String type){
-		int u = this.users.get(user).intValue();
-		int t = this.types.get(type).intValue();
+		try{
+			int u = this.getUserIndex(user);
+			int t = this.getTypeIndex(type);
+			return this.grid[u][t];
+		}catch(UnknownUserException e){
+			System.err.println("Unknown user: " + user);
+		}catch(UnknownTypeException e){
+			System.err.println("Unknown type: "+ type);
+		}
 		
-		return this.grid[u][t];
+		return -1;
 	}
 
 	public void setGrid(int[][] grid) {
@@ -213,7 +246,7 @@ public class GridPlane {
 		users.add("Marilyn Monroe");
 		
 		types.add("blue");
-		types.add("green");
+		types.add("orange");
 		
 		this.initialize(users, types);
 	}
