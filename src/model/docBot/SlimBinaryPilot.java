@@ -4,30 +4,20 @@ import adam.IAdam;
 import exceptions.UnknownTypeException;
 import exceptions.UnknownUserException;
 import model.GridPlane;
-/**
- * This class controls the robot and the environment the robot is in,
- * by increasing or decreasing the field values corresponding to the specified user and type.
- * @author Jochen Joswig
- *
- */
-public class Pilot {
+
+public class SlimBinaryPilot implements IPilot{
 	protected final IAdam robot;
 	protected final GridPlane grid;
 	protected final DocBotEnvironment environment;
 	
-	public Pilot(GridPlane grid, IAdam robot, DocBotEnvironment environment){
-		this.grid = grid;
+	public SlimBinaryPilot(GridPlane grid, IAdam robot, DocBotEnvironment environment){
 		this.robot = robot;
+		this.grid = grid;
 		this.environment = environment;
 	}
-	
-	/**
-	 * Use this method to increase the amount of containers associated with a given user and type by 1.
-	 * @param type
-	 * @param user
-	 * @return
-	 */
-	public boolean increment(String user, String type){
+
+	@Override
+	public boolean increment(String user, String type) {
 		try{
 			int userDelta = this.grid.getUserIndex(user) - this.environment.getBotUserPosition();
 			int typeDelta = this.grid.getTypeIndex(type) - this.environment.getBotTypePosition();
@@ -51,13 +41,8 @@ public class Pilot {
 		
 		return false;
 	}
-	
-	/**
-	 * Use this method to decrease the amount of containers associated with a given user and type by 1. 
-	 * @param type
-	 * @param user
-	 * @return
-	 */
+
+	@Override
 	public boolean decrement(String user, String type){
 		try{
 			int userDelta = this.grid.getUserIndex(user) - this.environment.getBotUserPosition();
@@ -80,6 +65,41 @@ public class Pilot {
 		return false;
 	}
 	
+	private void moveToLane(){
+		this.robot.turnRight(90);
+		this.robot.moveForward(this.environment.getSquareWidth() * (this.environment.getBotTypePosition() + 1));
+	}
+	
+	private void moveFromLane(String type){
+		try {
+			this.robot.moveForward(this.environment.getSquareWidth() * (this.grid.getTypeIndex(type) + 1));
+			this.robot.turnRight(90);
+		} catch (UnknownTypeException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void moveInLane(String user){
+		try {
+			int userDelta = this.grid.getUserIndex(user) - this.environment.getBotUserPosition();
+			if(userDelta <= 0){
+				this.robot.turnRight(90);
+			}else if(userDelta > 0){
+				this.robot.turnLeft(90);
+			}
+			
+			this.robot.moveForward(userDelta * this.environment.getSquareHeight() + userDelta * this.environment.getMaxDocBotMeasurements());
+			
+			if(userDelta <= 0){
+				this.robot.turnRight(90);
+			}else if(userDelta > 0){
+				this.robot.turnLeft(90);
+			}
+		} catch (UnknownUserException e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * Use this method to send the robot to the depot of a given type.
 	 * It will then calculate the way there.
@@ -148,68 +168,54 @@ public class Pilot {
 	 */
 	private void moveRobotToDestination(String user, String type){
 		try{
-		//horizontal movement
-		double typeDelta = (this.grid.getTypeIndex(type) - this.environment.getBotTypePosition());
-		
-		if(typeDelta < 0){
-			while(!this.robot.turnRight(90)){}
-		} else {
-			while(!this.robot.turnLeft(90)){};
-		}
-		
-		typeDelta = typeDelta * this.environment.getSquareWidth() + typeDelta * this.environment.getMaxDocBotMeasurements();
-		
-		while(!this.robot.moveForward(Math.abs(typeDelta) + (this.environment.getSquareWidth()/2) + (this.environment.getMaxDocBotMeasurements()/2))){};
-		
-		//vertical movement
-		double userDelta = (this.grid.getUserIndex(user) - this.environment.getBotUserPosition());
-		
-		if(typeDelta < 0 && userDelta < 0){
-			while(!this.robot.turnRight(90)){}
-		}else if(typeDelta < 0 && userDelta >= 0){
-			while(!this.robot.turnLeft(90)){}
-		}else if(typeDelta >= 0 && userDelta < 0){
-			while(!this.robot.turnLeft(90)){}
-		}else if(typeDelta >= 0 && userDelta >= 0){
-			while(!this.robot.turnRight(90)){}
-		}
-		
-		userDelta = userDelta * this.environment.getSquareHeight() + userDelta * this.environment.getMaxDocBotMeasurements();
-		
-		while(!this.robot.moveForward(Math.abs(userDelta))){}
-		
-		if(typeDelta > 0){
-			while(!this.robot.turnLeft(90)){}
-		} else {
-			while(!this.robot.turnRight(90)){}
-		}
-		
-		while(!this.robot.moveForward((this.environment.getMaxDocBotMeasurements() / 2) + (this.environment.getSquareWidth() / 2))){}
-		
-		//TODO add if to check which way to turn is right (eventually not needed)
-		if(typeDelta > 0){
-			while(!this.robot.turnRight(90)){}
-		} else {
-			while(!this.robot.turnLeft(90)){}
-		}
-		
-		this.environment.setBotUserPosition(this.grid.getUserIndex(user));
-		this.environment.setBotTypePosition(this.grid.getTypeIndex(type));
+			double typeDelta = (this.grid.getTypeIndex(type) - this.environment.getBotTypePosition());
+			
+			//horizontal movement		
+			if(typeDelta != 0){
+				while(!this.robot.turnRight(90)){}
+			}
+			
+			typeDelta = typeDelta * this.environment.getSquareWidth();
+			
+			while(!this.robot.moveForward(Math.abs(typeDelta) + (this.environment.getSquareWidth()/2) + (this.environment.getMaxDocBotMeasurements()/2))){}
+			
+			//vertical movement
+			double userDelta = (this.grid.getUserIndex(user) - this.environment.getBotUserPosition());
+			
+			if(userDelta == 0){
+				while(!this.robot.turnLeft(90)){}
+			}else if(userDelta < 0){
+				while(!this.robot.turnRight(90)){}
+			}else if(userDelta > 0){
+				while(!this.robot.turnLeft(90)){}
+			}
+			
+			userDelta = userDelta * this.environment.getSquareHeight() + userDelta * this.environment.getMaxDocBotMeasurements();
+			
+			while(!this.robot.moveForward(Math.abs(userDelta))){}
+			
+			if(typeDelta > 0){
+				while(!this.robot.turnLeft(90)){}
+			} else {
+				while(!this.robot.turnRight(90)){}
+			}
+			
+			while(!this.robot.moveForward((this.environment.getMaxDocBotMeasurements() / 2) + (this.environment.getSquareWidth() / 2))){}
+			
+			//TODO add if to check which way to turn is right (eventually not needed)
+			if(typeDelta > 0){
+				while(!this.robot.turnRight(90)){}
+			} else {
+				while(!this.robot.turnLeft(90)){}
+			}
+			
+			this.environment.setBotUserPosition(this.grid.getUserIndex(user));
+			this.environment.setBotTypePosition(this.grid.getTypeIndex(type));
 
 		}catch(UnknownUserException e){
 			System.err.println("Unknown user: " + user);
 		}catch(UnknownTypeException e){
 			System.err.println("Unknown type: "+ type);
 		}
-	}
-	
-	public GridPlane getGridPlane(){
-		return this.grid;
-	}
-	
-	public void printGrid(){
-		System.out.println(this.environment.getBotTypePosition() + " " +  this.environment.getBotUserPosition());
-		
-		this.grid.printGridPlane();
 	}
 }

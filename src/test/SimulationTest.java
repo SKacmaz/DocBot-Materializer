@@ -12,7 +12,7 @@ import adam.IAdam;
 import main.Materializer;
 import model.GridPlane;
 import model.docBot.DocBotEnvironment;
-import model.docBot.Pilot;
+import model.docBot.SimpleBinaryPilot;
 import stairway.Stairway;
 
 /**
@@ -52,7 +52,7 @@ public class SimulationTest {
 	GridPlane plane;
 
 	// component for handling physical world logic
-	Pilot pilot;
+	SimpleBinaryPilot pilot;
 	
 	Set<String> users = new HashSet<>();
 	
@@ -70,7 +70,7 @@ public class SimulationTest {
 		types.add(TYPE_GREEN);
 		
 		plane = new GridPlane(users, types);
-		pilot = new Pilot(plane, adam, environment);
+		pilot = new SimpleBinaryPilot(plane, adam, environment);
 	}
 
 	/**
