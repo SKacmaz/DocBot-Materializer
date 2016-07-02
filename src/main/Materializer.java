@@ -83,7 +83,7 @@ public class Materializer {
 		};
 		
 		Timer timer = new Timer();
-		timer.schedule(pollFromHaven, 100, 300000);
+		timer.schedule(pollFromHaven, 100, 60000);
 		
 		LOGGER.debug("Please, enter 0 to exit.");
 		int i = scanner.nextInt();
@@ -125,9 +125,10 @@ public class Materializer {
 					
 					gp_new.increment(userName, type);
 				}
-			} catch (JSONException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 			//control pilot accordingly, by comparing the newly generated GridPlane with the old one and take necessary actions to change the old one into the new one.
 			GridPlane gp_old = this.pilot.getGridPlane();
 			

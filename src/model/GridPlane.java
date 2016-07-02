@@ -107,7 +107,15 @@ public class GridPlane {
 	 * @see addUser(), addUsers(), addType(), addTypes()
 	 */
 	public void initialize(){
+		//sets the grid dimensions so that there is a column for every type and a row for every user
 		this.grid = new int[this.users.size()][this.types.size()];
+		
+		//fills the grid with zeros
+		for(int u = 0; u < this.users.size(); u++){
+			for(int t = 0; t < this.users.size(); t++){
+				this.grid[u][t] = 0;
+			}
+		}
 	}
 	
 	/**
