@@ -21,7 +21,7 @@ import adam.Adam;
 import adam.IAdam;
 import model.GridPlane;
 import model.docBot.DocBotEnvironment;
-import model.docBot.Pilot;
+import model.docBot.SimpleBinaryPilot;
 import stairway.Stairway;
 
 /**
@@ -36,7 +36,7 @@ public class Materializer {
 	protected final Stairway stairs;
 	
 	//component for handling physical world logic
-	protected final Pilot pilot;
+	protected final SimpleBinaryPilot pilot;
 	
 	public Materializer()
 	{
@@ -56,7 +56,7 @@ public class Materializer {
 //			}
 //		}
 		
-		pilot = new Pilot(new GridPlane(), new Adam(), new DocBotEnvironment());
+		pilot = new SimpleBinaryPilot(new GridPlane(), new Adam(), new DocBotEnvironment());
 	}
 	
 
@@ -147,11 +147,11 @@ public class Materializer {
 						//if the old Grid has to many tokens for a given user and type
 						pilot.decrement(u, t);
 					}
-					try {
-						TimeUnit.SECONDS.sleep(20);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+//					try {
+//						TimeUnit.SECONDS.sleep(20);
+//					} catch (InterruptedException e) {
+//						e.printStackTrace();
+//					}
 				}
 			}
 		}
