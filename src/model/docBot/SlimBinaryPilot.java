@@ -66,14 +66,14 @@ public class SlimBinaryPilot implements IPilot{
 	}
 	
 	private void moveToLane(){
-		this.robot.turnRight(90);
-		this.robot.moveForward(this.environment.getSquareWidth() * (this.environment.getBotTypePosition() + 1));
+		while(!this.robot.turnRight(90)){}
+		while(!this.robot.moveForward((this.environment.getMaxDocBotMeasurements()/2) + (this.environment.getSquareWidth()/2) + this.environment.getSquareWidth() * (this.environment.getBotTypePosition()))){}
 	}
 	
 	private void moveFromLane(String type){
 		try {
-			this.robot.moveForward((this.environment.getMaxDocBotMeasurements()/2) + (this.environment.getSquareWidth()/2) + this.environment.getSquareWidth() * (this.grid.getTypeIndex(type)));
-			this.robot.turnRight(90);
+			while(!this.robot.moveForward((this.environment.getMaxDocBotMeasurements()/2) + (this.environment.getSquareWidth()/2) + this.environment.getSquareWidth() * (this.grid.getTypeIndex(type)))){}
+			while(!this.robot.turnRight(90)){}
 		} catch (UnknownTypeException e) {
 			e.printStackTrace();
 		}
@@ -83,40 +83,45 @@ public class SlimBinaryPilot implements IPilot{
 		try {
 			int userDelta = this.grid.getUserIndex(user) - this.environment.getBotUserPosition();
 			if(userDelta <= 0){
-				this.robot.turnRight(90);
+				while(!this.robot.turnRight(90)){}
 			}else if(userDelta > 0){
-				this.robot.turnLeft(90);
+				while(!this.robot.turnLeft(90)){}
 			}
 			
-			this.robot.moveForward(userDelta * this.environment.getSquareHeight() + userDelta * this.environment.getMaxDocBotMeasurements());
+			while(!this.robot.moveForward(Math.abs(userDelta) * this.environment.getSquareHeight() + Math.abs(userDelta) * this.environment.getMaxDocBotMeasurements())){}
 			
 			if(userDelta <= 0){
-				this.robot.turnRight(90);
+				while(!this.robot.turnRight(90)){}
 			}else if(userDelta > 0){
-				this.robot.turnLeft(90);
+				while(!this.robot.turnLeft(90)){}
 			}
 		} catch (UnknownUserException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * Use this method to move the robot within one row from its current type (-location) to the next/given type (-location).
+	 * @param type
+	 */
 	private void MoveInRowToType(String type){
 		try {
 			double typeDelta = this.grid.getTypeIndex(type) - this.environment.getBotTypePosition();
+			
 			if(typeDelta < 0){
-				this.robot.turnRight(90);
+				while(!this.robot.turnRight(90)){}
 			} else if(typeDelta > 0){
-				this.robot.turnLeft(90);
+				while(!this.robot.turnLeft(90)){}
 			}
 			
 			typeDelta = typeDelta * this.environment.getSquareWidth();
 			
-			this.robot.moveForward(typeDelta);
+			while(!this.robot.moveForward(Math.abs(typeDelta))){}
 			
 			if(typeDelta < 0){
-				this.robot.turnLeft(90);
+				while(!this.robot.turnLeft(90)){}
 			} else if(typeDelta > 0){
-				this.robot.turnRight(90);
+				while(!this.robot.turnRight(90)){}
 			}
 			
 		} catch (UnknownTypeException e) {
