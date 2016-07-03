@@ -111,11 +111,11 @@ public class GridPlane {
 		this.grid = new int[this.users.size()][this.types.size()];
 		
 		//fills the grid with zeros
-		for(int u = 0; u < this.users.size(); u++){
-			for(int t = 0; t < this.users.size(); t++){
-				this.grid[u][t] = 0;
-			}
-		}
+//		for(int u = 0; u < this.users.size(); u++){
+//			for(int t = 0; t < this.users.size(); t++){
+//				this.grid[u][t] = 0;
+//			}
+//		}
 	}
 	
 	/**
@@ -217,6 +217,7 @@ public class GridPlane {
 	public int[][] getGrid() {
 		return grid;
 	}
+	
 	/**
 	 * Use this method to obtain the amount of containers for a given user and type.
 	 * @param user
@@ -227,6 +228,7 @@ public class GridPlane {
 		try{
 			int u = this.getUserIndex(user);
 			int t = this.getTypeIndex(type);
+			
 			return this.grid[u][t];
 		}catch(UnknownUserException e){
 			System.err.println("Unknown user: " + user);
