@@ -18,51 +18,22 @@ public class SlimBinaryPilot implements IPilot{
 
 	@Override
 	public boolean increment(String user, String type) {
-		try{
-			int userDelta = this.grid.getUserIndex(user) - this.environment.getBotUserPosition();
-			int typeDelta = this.grid.getTypeIndex(type) - this.environment.getBotTypePosition();
-			
-			//if the robot is already at the right place it does not need to move so we can skip that.
-			if(userDelta != 0 && typeDelta != 0){
-				this.moveRobotTo("depot", type);
-			}
-			
-			while(!this.robot.grab()){}
-			this.moveRobotTo(user, type);
-			while(!this.robot.drop()){}
-			this.grid.increment(user, type);
-			return true;
-			
-		}catch(UnknownUserException e){
-			System.err.println("Unknown user: " + user);
-		}catch(UnknownTypeException e){
-			System.err.println("Unknown type: "+ type);
-		}
-		
-		return false;
+		this.moveRobotTo("depot", type);
+		while(!this.robot.grab()){}
+		this.moveRobotTo(user, type);
+		while(!this.robot.drop()){}
+		this.grid.increment(user, type);
+		return true;
 	}
 
 	@Override
 	public boolean decrement(String user, String type){
-		try{
-			int userDelta = this.grid.getUserIndex(user) - this.environment.getBotUserPosition();
-			int typeDelta = this.grid.getTypeIndex(type) - this.environment.getBotTypePosition();
-			//if the robot is already at the right place it does not need to move so we can skip that.
-			if(userDelta != 0 && typeDelta != 0){
-				this.moveRobotTo(user, type);
-			}
-			while(!this.robot.grab()){}
-			this.moveRobotTo("depot", type);
-			while(!this.robot.drop()){}
-			this.grid.decrement(user, type);
-			return true;
-		}catch(UnknownUserException e){
-			System.err.println("Unknown user: " + user);
-		}catch(UnknownTypeException e){
-			System.err.println("Unknown type: "+ type);
-		}
-		
-		return false;
+		this.moveRobotTo(user, type);
+		while(!this.robot.grab()){}
+		this.moveRobotTo("depot", type);
+		while(!this.robot.drop()){}
+		this.grid.decrement(user, type);
+		return true;
 	}
 	
 	private void moveToLane(){
@@ -114,9 +85,7 @@ public class SlimBinaryPilot implements IPilot{
 				while(!this.robot.turnLeft(90)){}
 			}
 			
-			typeDelta = typeDelta * this.environment.getSquareWidth();
-			
-			while(!this.robot.moveForward(Math.abs(typeDelta))){}
+			while(!this.robot.moveForward(Math.abs(typeDelta * this.environment.getSquareWidth()))){}
 			
 			if(typeDelta < 0){
 				while(!this.robot.turnLeft(90)){}
