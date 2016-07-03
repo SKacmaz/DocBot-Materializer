@@ -22,6 +22,7 @@ import adam.IAdam;
 import model.GridPlane;
 import model.docBot.DocBotEnvironment;
 import model.docBot.SimpleBinaryPilot;
+import model.docBot.SlimBinaryPilot;
 import stairway.Stairway;
 
 /**
@@ -36,7 +37,7 @@ public class Materializer {
 	protected final Stairway stairs;
 	
 	//component for handling physical world logic
-	protected final SimpleBinaryPilot pilot;
+	protected final SlimBinaryPilot pilot;
 	
 	public Materializer()
 	{
@@ -56,7 +57,7 @@ public class Materializer {
 //			}
 //		}
 		
-		pilot = new SimpleBinaryPilot(new GridPlane(), new Adam(), new DocBotEnvironment());
+		pilot = new SlimBinaryPilot(new GridPlane(), new Adam(), new DocBotEnvironment());
 	}
 	
 
@@ -135,7 +136,7 @@ public class Materializer {
 			Set<String> users = gp_old.getUsers().keySet();
 			Set<String> types = gp_old.getTypes().keySet();
 			
-			pilot.printGrid();
+			gp_old.printGridPlane();
 			gp_new.printGridPlane();
 			
 			for(String u : users){

@@ -151,4 +151,8 @@ public class SlimBinaryPilot implements IPilot{
 			System.err.println("Unknown type: "+ type);
 		}
 	}
+	
+	public GridPlane getGridPlane(){
+		return grid;
+	}
 }
