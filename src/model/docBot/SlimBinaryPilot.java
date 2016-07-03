@@ -72,7 +72,7 @@ public class SlimBinaryPilot implements IPilot{
 	
 	private void moveFromLane(String type){
 		try {
-			this.robot.moveForward(this.environment.getSquareWidth() * (this.grid.getTypeIndex(type) + 1));
+			this.robot.moveForward((this.environment.getMaxDocBotMeasurements()/2) + (this.environment.getSquareWidth()/2) + this.environment.getSquareWidth() * (this.grid.getTypeIndex(type)));
 			this.robot.turnRight(90);
 		} catch (UnknownTypeException e) {
 			e.printStackTrace();
