@@ -1,0 +1,26 @@
+{
+  "resources": [
+    {
+      "type": "blue",
+      "user": {
+        "id": 2,
+        "firstName": "Marilyn",
+        "lastName": "Monroe"
+      },
+      "dockerId": "15c515f8-bcbb-4e90-99b6-cbf254fe4e0c",
+      "custom": {},
+      "id": 2
+    },
+    {
+      "type": "green",
+      "user": {
+        "id": 1,
+        "firstName": "Bob",
+        "lastName": "Marley"
+      },
+      "dockerId": "4b04825f-843b-4756-9ba2-b0e291686754",
+      "custom": {},
+      "id": 1
+    }
+  ]
+}

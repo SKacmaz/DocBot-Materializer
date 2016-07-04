@@ -1,0 +1,36 @@
+/* line 5, ../sass/diagram.scss */
+#chart {
+  background-color: #000000;
+}
+
+/* line 9, ../sass/diagram.scss */
+.chart rect {
+  fill: #717C89;
+}
+/* line 12, ../sass/diagram.scss */
+.chart rect.blue {
+  fill: #336699;
+}
+/* line 15, ../sass/diagram.scss */
+.chart rect.orange {
+  fill: #D74E09;
+}
+/* line 18, ../sass/diagram.scss */
+.chart rect.yellow {
+  fill: #ffca3a;
+}
+/* line 21, ../sass/diagram.scss */
+.chart rect.green {
+  fill: #7ae582;
+}
+
+/* line 28, ../sass/diagram.scss */
+.axis path, .axis line {
+  fill: none;
+  stroke: #717C89;
+  shape-rendering: crispEdges;
+}
+/* line 35, ../sass/diagram.scss */
+.axis text {
+  fill: #717C89;
+}

@@ -72,7 +72,7 @@
       <div class="container">
         <h2>Visualization</h2>
 
-        <?php include 'visualization.php'; ?>
+         <?php include 'visualization.php'; ?>
       </div>
     </section>
 

@@ -1,0 +1,38 @@
+@import "colors";
+@import "compass/css3";
+
+
+#chart {
+  background-color: $black;
+}
+
+.chart rect {
+  fill : $grey;
+
+  &.blue {
+    fill : $blue;
+  }
+  &.orange {
+    fill: $orange;
+  }
+  &.yellow {
+    fill: $yellow;
+  }
+  &.green {
+    fill: $green;
+  }
+}
+
+.axis
+{
+  path, line
+  {
+    fill: none;
+    stroke: $grey;
+    shape-rendering: crispEdges;
+  }
+
+  text {
+    fill: $grey;
+  }
+}
