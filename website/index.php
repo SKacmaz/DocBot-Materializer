@@ -71,6 +71,8 @@
     <section id="visualization">
       <div class="container">
         <h2>Visualization</h2>
+
+        <?php include 'visualization.php'; ?>
       </div>
     </section>
 
