@@ -51,38 +51,47 @@
     </div><!-- /.container-fluid -->
     </nav>
 
-    <section id="hero">
+    <header>
       <div class="container">
         <div class="row">
           <div class="col-10">
             <img src="img/logo2.png" alt="" />
             <h1> | Materializer</h1>
+            
           </div>
         </div>
       </div>
-    </section>
+    </header>
 
     <section id="intro">
       <div class="container">
         <h2>Intro</h2>
+        <p>Dockership ist ein Projekt von drei Studenten des Fachbereichs Informatik der Universität Hamburg. Das Projekt beschäftigt sich mit der Entwicklung kontextbasierter verteilter Anwendungen. Ziel des DockerShip-Projektes ist die Visualisierung von Docker-Ressourcen. Dabei sollen die Ressourcen, welche über einen zentralen Server geleitet werden, auf verschiede Arten visuell dargestellt werden. Langfristig ist das Ziel von DockerShip eine generische API für verschiedene Ressourcen (nicht nur Docker) anzubieten und diese auf verschiedene Arten zu visualiesieren.</p>
       </div>
     </section>
 
     <section id="visualization">
       <div class="container">
         <h2>Visualization</h2>
-
-         <?php include 'visualization.php'; ?>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <h2>About</h2>
+        
+		<?php include 'visualization.php'; ?>
       </div>
     </section>
 
     <footer>
+		<div class="container">
+			<!-- <div class="row">
+	        	<div class=".col-md-6">  -->
+	        	<h2>Links</h2>
+	        		<ul>
+	        			<li><a href="https://github.com/SKacmaz/DockerShip-Project">Haven</a></li>
+	        			<li><a href="https://github.com/SKacmaz/DocBot-Materializer">Materializer</a></li>
+	        			<li><a href="https://github.com/SKacmaz/IVC">EV3-Controller</a></li>
+	        		</ul>
+	        	<!-- </div>
+	        	<div class=".col-md-6"></div>
+	        </div> -->
+      	</div>
     </footer>
   </body>
 </html>

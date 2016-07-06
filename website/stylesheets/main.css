@@ -1,13 +1,14 @@
 /* line 5, ../sass/main.scss */
 body, html {
-  background-color: #717C89;
-  color: #000000;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: #e3e5e8;
+	color: #000000;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	height: 100%;
 }
 
 /* line 11, ../sass/main.scss */
 h1 {
-  font-size: 70px;
+	font-size: 70px;
 }
 
 /* line 15, ../sass/main.scss */
@@ -19,11 +20,26 @@ h1, h2, h3, h4, h5, h6 {
 Hero
 #####################**/
 /* line 26, ../sass/main.scss */
-#hero h1 {
+
+header h1 {
   display: inline-block;
-}
+} 
 /* line 29, ../sass/main.scss */
-#hero img {
+header img {
   height: 100px;
   margin-bottom: 25px;
+}
+
+footer{
+	color: #d3d6de;
+	background-color: #424857;
+	min-height: 200px;
+}
+
+footer a{
+	color: #e67300;
+}
+
+footer a:hover{
+	color: #ffa64d;
 }
