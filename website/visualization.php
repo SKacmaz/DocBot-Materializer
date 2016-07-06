@@ -9,11 +9,24 @@
 
 <script type="text/javascript">
 
+$(document).ready(function(){
+  handleResourceResult("null");
+})
+
 handleResourceResult = function(data)
 {
-  console.log(data.resources);
+  console.log("HANDLE RESULT");
   var resources  = data.resources;
-  // var resources = getSampleJson();
+
+  if (!resources)
+  {
+    var resources = getSampleJson();
+  }
+  else
+    {
+      console.log(data.resources);
+    }
+
   console.log(resources.length);
 
   var types = d3.nest()

@@ -1,45 +1,126 @@
 /* line 5, ../sass/main.scss */
 body, html {
-	background-color: #e3e5e8;
-	color: #000000;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	height: 100%;
+  background-color: #e3e5e8;
+  color: #000000;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: 100%;
 }
 
-/* line 11, ../sass/main.scss */
-h1 {
-	font-size: 70px;
-}
-
-/* line 15, ../sass/main.scss */
+/* line 13, ../sass/main.scss */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Open Sans Condensed', sans-serif;
+}
+
+/* line 17, ../sass/main.scss */
+h1 {
+  font-size: 70px;
+}
+
+/* line 21, ../sass/main.scss */
+h2 {
+  font-size: 35px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+/* line 27, ../sass/main.scss */
+section {
+  padding: 50px 0;
 }
 
 /**###################
 Hero
 #####################**/
-/* line 26, ../sass/main.scss */
-
+/* line 38, ../sass/main.scss */
 header h1 {
   display: inline-block;
-} 
-/* line 29, ../sass/main.scss */
+}
+/* line 41, ../sass/main.scss */
 header img {
   height: 100px;
   margin-bottom: 25px;
 }
 
-footer{
-	color: #d3d6de;
-	background-color: #424857;
-	min-height: 200px;
+/* line 50, ../sass/main.scss */
+#intro img {
+  width: 100%;
 }
 
-footer a{
-	color: #e67300;
+/**###################
+FOOTER
+#####################**/
+/* line 59, ../sass/main.scss */
+footer {
+  color: #d3d6de;
+  background-color: #424857;
+  min-height: 200px;
 }
 
-footer a:hover{
-	color: #ffa64d;
+/* line 65, ../sass/main.scss */
+footer a {
+  color: #e67300;
+}
+
+/* line 69, ../sass/main.scss */
+footer a:hover {
+  color: #ffa64d;
+}
+
+/**###################
+BRIDGES
+#####################**/
+/* line 78, ../sass/main.scss */
+.panorama {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+/* line 88, ../sass/main.scss */
+.panorama2 {
+  height: 50%;
+  width: 100%;
+  position: relative;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+/* line 98, ../sass/main.scss */
+.panoramaSize {
+  width: 100%;
+  position: relative;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+/* line 107, ../sass/main.scss */
+.panoramaImage1 {
+  background-image: url(../img/design1.jpg);
+}
+
+/* line 111, ../sass/main.scss */
+.panoramaImage2 {
+  background-image: url(../img/gridReal.jpg);
+}
+
+/* line 115, ../sass/main.scss */
+.panoramaImage3 {
+  background-image: url(../img/gridGrey.jpg);
 }

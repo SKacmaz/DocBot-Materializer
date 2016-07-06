@@ -34,18 +34,9 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="active"><a href="#intro">Intro <span class="sr-only">(current)</span></a></li>
           <li class="dropdown">
-            <a href="#visualization" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Visualization <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">One more separated link</a></li>
-            </ul>
+            <a href="#visualization">Visualization</a>
           </li>
-          <li><a href="#about">About</a></li>
+          <li><a href="#console">Ev3 Console</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -57,7 +48,7 @@
           <div class="col-10">
             <img src="img/logo2.png" alt="" />
             <h1> | Materializer</h1>
-            
+
           </div>
         </div>
       </div>
@@ -65,18 +56,65 @@
 
     <section id="intro">
       <div class="container">
-        <h2>Intro</h2>
-        <p>Dockership ist ein Projekt von drei Studenten des Fachbereichs Informatik der Universität Hamburg. Das Projekt beschäftigt sich mit der Entwicklung kontextbasierter verteilter Anwendungen. Ziel des DockerShip-Projektes ist die Visualisierung von Docker-Ressourcen. Dabei sollen die Ressourcen, welche über einen zentralen Server geleitet werden, auf verschiede Arten visuell dargestellt werden. Langfristig ist das Ziel von DockerShip eine generische API für verschiedene Ressourcen (nicht nur Docker) anzubieten und diese auf verschiedene Arten zu visualiesieren.</p>
+        <div class="col-lg-12">
+          <h2>Intro</h2>
+
+        </div>
+        <div class="col-lg-8">
+          <p>Dockership ist ein Projekt von drei Studenten des Fachbereichs Informatik der UniversitÃ¤t Hamburg.
+          </p>
+          <p>
+            Das Projekt beschÃ¤ftigt sich mit der Entwicklung kontextbasierter verteilter Anwendungen.
+            Ziel des DockerShip-Projektes ist kurzfristig die Visualisierung von Docker-Ressourcen.
+            Dabei sollen die Ressourcen, welche Ã¼ber einen zentralen Server geleitet werden, auf verschiede Arten visuell dargestellt werden.
+          </p>
+            <p>
+              Langfristig ist das Ziel von DockerShip eine generische API fÃ¼r verschiedene Ressourcen (nicht nur Docker) anzubieten und
+              diese auf verschiedene Arten zu visualiesieren.
+            </p>
+        </div>
+        <div class="col-lg-4">
+            <img src="img/red.jpg" alt="" />
+        </div>
       </div>
     </section>
 
+    <div class="panorama2 panoramaImage1"></div>
+
     <section id="visualization">
       <div class="container">
-        <h2>Visualization</h2>
-        
+        <div class="col-lg-12">
+          <h2>Visualization</h2>
+        </div>
+
 		<?php include 'visualization.php'; ?>
       </div>
     </section>
+
+    <div class="panorama2 panoramaImage2"></div>
+
+    <section id="#console">
+      <div class="container">
+        <div class="col-lg-12">
+          <h2>Ev3 Console</h2>
+
+        <div class="col-lg-12">
+          <button type="button" class="btn btn-default" onclick="driveForward();">Forward</button>
+          <button type="button" class="btn btn-default" onclick="driveBackward();">Backward</button>
+          <button type="button" class="btn btn-default" onclick="turnRight();">turnRight</button>
+          <button type="button" class="btn btn-default" onclick="turnLeft();">turnLeft</button>
+          <button type="button" class="btn btn-default" onclick="grab();">grab</button>
+          <button type="button" class="btn btn-default" onclick="drop();">drop</button>
+          <button type="button" class="btn btn-default" onclick="exit();">exit</button>
+        </div>
+
+
+      </div>
+
+    </section>
+
+    <div class="panorama2 panoramaImage3"></div>
+
 
     <footer>
 		<div class="container">
@@ -93,5 +131,73 @@
 	        </div> -->
       	</div>
     </footer>
+
+<script type="text/javascript">
+
+var eveUrl = "http://192.168.104.74/";
+// var eveUrl = "http://192.168.178.55/";
+
+function driveForward()
+{
+  var command = "forward-20";
+  httpGet(eveUrl + command);
+  console.log("drive forward command send");
+
+}
+
+function driveBackward()
+{
+  var command = "backward-20";
+  httpGet(eveUrl + command);
+  console.log("driveBackward command send");
+}
+
+function turnRight()
+{
+  var command = "turnright-90";
+  httpGet(eveUrl + command);
+  console.log("command send");
+}
+
+function turnLeft()
+{
+  var command = "turnleft-90";
+  httpGet(eveUrl + command);
+  console.log("command send");
+}
+
+function grab()
+{
+  var command = "grab";
+  httpGet(eveUrl + command);
+  console.log("command send");
+}
+
+function drop()
+{
+  var command = "drop";
+  httpGet(eveUrl + command);
+  console.log("command send");
+}
+
+function exit()
+{
+  var command = "exit";
+  httpGet(eveUrl + command);
+  console.log("command send");
+}
+
+function httpGet(theUrl)
+{
+
+    console.log("URL: " + theUrl);
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send(null);
+    // return xmlHttp.responseText;
+}
+
+</script>
+
   </body>
 </html>

@@ -3,17 +3,29 @@
 
 
 body, html {
-  background-color: $grey;
-  color: $black;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: #e3e5e8;
+	color: #000000;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	height: 100%;
+}
+
+
+h1, h2, h3, h4, h5, h6  {
+  font-family:  'Open Sans Condensed', sans-serif;
 }
 
 h1  {
   font-size: 70px;
 }
 
-h1, h2, h3, h4, h5, h6  {
-  font-family:  'Open Sans Condensed', sans-serif;
+h2 {
+  font-size: 35px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+section {
+  padding: 50px 0;
 }
 
 
@@ -21,7 +33,7 @@ h1, h2, h3, h4, h5, h6  {
 Hero
 #####################**/
 
-#hero {
+header {
 
   h1 {
     display: inline-block;
@@ -30,4 +42,76 @@ Hero
     height: 100px;
     margin-bottom: 25px;
   }
+}
+
+
+
+#intro {
+  img {
+    width: 100%;
+  }
+}
+
+/**###################
+FOOTER
+#####################**/
+
+footer{
+	color: #d3d6de;
+	background-color: #424857;
+	min-height: 200px;
+}
+
+footer a{
+	color: #e67300;
+}
+
+footer a:hover{
+	color: #ffa64d;
+}
+
+
+/**###################
+BRIDGES
+#####################**/
+
+.panorama {
+	height:100%;
+	width:100%;
+	position: relative;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	@include background-size(cover);
+}
+
+.panorama2 {
+	height:50%;
+	width:100%;
+	position: relative;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	@include background-size(cover);
+}
+
+.panoramaSize {
+	width:100%;
+	position: relative;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	@include background-size(cover);
+}
+
+.panoramaImage1 {
+	background-image: url(../img/design1.jpg);
+}
+
+.panoramaImage2 {
+	background-image: url(../img/gridReal.jpg);
+}
+
+.panoramaImage3 {
+	background-image: url(../img/gridGrey.jpg);
 }
